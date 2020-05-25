@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.map.MapFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnToDashboard"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/_15sdp"
+                android:background="@drawable/ic_arrow_back" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_280sdp" />
+
+
+                <LinearLayout
+                    android:id="@+id/provinceSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/davy_grey"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnExpand"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/ic_expand_less"/>
+
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        style="@style/Widget.AppCompat.Light.SearchView"
+                        android:layout_gravity="center_horizontal"/>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvProvinces"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/davy_grey"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_province" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </FrameLayout>
+</layout>
+
