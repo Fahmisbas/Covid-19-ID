@@ -40,33 +40,44 @@
                     android:background="@color/davy_grey"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/btnExpand"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_expand_less"/>
-
-
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        style="@style/Widget.AppCompat.Light.SearchView"
-                        android:layout_gravity="center_horizontal"/>
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/btnExpand"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/ic_expand_less" />
 
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvProvinces"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/davy_grey"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_province" />
+                        <androidx.appcompat.widget.SearchView
+                            android:id="@+id/search"
+                            style="@style/Widget.AppCompat.Light.SearchView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp" />
 
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvProvinces"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/davy_grey"
+                            android:visibility="visible"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_province" />
+
+                        <ProgressBar
+                            android:id="@+id/progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
+                    </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>

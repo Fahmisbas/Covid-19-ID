@@ -1,12 +1,7 @@
 package com.fahmisbas.covid19id.view.map
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.model.ProvinceResult
@@ -82,6 +77,11 @@ class MapFragment : BaseFragment<MapViewModel>(), OnMapReadyCallback {
 
     private fun updateData(provinceResult: ProvinceResult) {
         provinceAdapter.updateProvinceList(provinceResult.provinceList)
+        updateView()
+    }
+
+    private fun updateView() {
+        progress.gone()
     }
 
     override fun onMapReady(p0: GoogleMap?) {
