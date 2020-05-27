@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
+import com.fahmisbas.covid19id.databinding.FragmentMapBinding
 import com.fahmisbas.covid19id.model.ProvinceResult
 import com.fahmisbas.covid19id.util.gone
 import com.fahmisbas.covid19id.util.observe
@@ -17,7 +18,7 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
-class MapFragment : BaseFragment<MapViewModel>(), OnMapReadyCallback {
+class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReadyCallback {
 
     private var isPressed = false;
 
@@ -33,7 +34,9 @@ class MapFragment : BaseFragment<MapViewModel>(), OnMapReadyCallback {
         search.visibility = View.GONE
         viewModel.fetch()
 
-        initViews();btnAction();btnExpand()
+        initViews()
+        btnAction()
+        btnExpand()
 
     }
 
@@ -56,16 +59,18 @@ class MapFragment : BaseFragment<MapViewModel>(), OnMapReadyCallback {
 
     private fun btnExpand(){
         btnExpand.setOnClickListener {
-            if (isPressed) {
+            isPressed = if (isPressed) {
                 map.gone()
                 btnToDashboard.gone()
+                search.visible()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_more)
-                isPressed = false
+                false
             }else {
                 map.visible()
                 btnToDashboard.visible()
+                search.gone()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_less)
-                isPressed = true
+                true
             }
         }
     }
@@ -93,5 +98,6 @@ class MapFragment : BaseFragment<MapViewModel>(), OnMapReadyCallback {
     }
 
     override fun getViewModel() = MapViewModel::class.java
+
     override fun getFragmentView() = R.layout.fragment_map
 }

@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_100sdp"
-    app:cardBackgroundColor="@color/davy_grey"
-    android:background="@color/davy_grey">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="province"
+            type="com.fahmisbas.covid19id.model.Province" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:background="?selectableItemBackground"
+        app:cardBackgroundColor="@color/davy_grey">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/_15sdp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_15sdp">
 
             <TextView
                 android:id="@+id/provinceName"
@@ -17,46 +26,46 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:text="Jakarta"
                 android:fontFamily="@font/googlesansbold"
+                android:text="@{province.provinceName}"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/positive"
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:fontFamily="@font/googlesansbold"
-                android:text="Positive : 1000"
-                android:textSize="@dimen/_13ssp"
-                android:textColor="@color/color_confirmed"/>
+                android:text="@{`Positive : `  + province.positive}"
+                android:textColor="@color/color_confirmed"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/recovered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/googlesansbold"
-                android:text="Sembuh : 1000"
-                android:textSize="@dimen/_13ssp"
                 android:layout_alignParentBottom="true"
-                android:textColor="@color/color_recovered"/>
+                android:fontFamily="@font/googlesansbold"
+                android:text="@{`Sembuh : ` + province.recovered}"
+                android:textColor="@color/color_recovered"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/death"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Meninggal : 1000"
-                android:textColor="@color/color_death"
-                android:textSize="@dimen/_13ssp"
-                android:layout_toEndOf="@id/recovered"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_toEndOf="@id/recovered"
                 android:fontFamily="@font/googlesansbold"
-                android:layout_marginStart="@dimen/_15sdp"/>
-
+                android:text="@{`Meninggal : ` + province.death}"
+                android:textColor="@color/color_death"
+                android:textSize="@dimen/_13ssp" />
 
         </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>
+</layout>
 

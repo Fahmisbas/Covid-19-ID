@@ -15,7 +15,7 @@ class QandAViewModel : ViewModel() {
     var qandA = MutableLiveData<List<QandA>>()
     var error = MutableLiveData<Boolean>()
 
-    fun fecth() {
+    fun fetch() {
         getDataFromRemote()
     }
 
@@ -29,7 +29,6 @@ class QandAViewModel : ViewModel() {
                 error.value = false
                 qandA.value = response.body()
             }
-
         })
     }
 }

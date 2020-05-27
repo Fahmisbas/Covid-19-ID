@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
+import com.fahmisbas.covid19id.databinding.FragmentDashboardBinding
 import com.fahmisbas.covid19id.model.Indonesia
 import com.fahmisbas.covid19id.util.gone
 import com.fahmisbas.covid19id.util.invisible
@@ -12,16 +13,15 @@ import com.fahmisbas.covid19id.util.visible
 import com.fahmisbas.covid19id.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
-class DashboardFragment : BaseFragment<DashboardViewModel>() {
+class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBinding>() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        refreshLayout()
-        btnAction()
-
         hideViews()
+        refreshLayout()
+        btnActions()
 
         viewModel.refresh()
     }
@@ -46,22 +46,27 @@ class DashboardFragment : BaseFragment<DashboardViewModel>() {
     }
 
     private fun updateViews(indonesia: Indonesia) {
+        binding.indonesia = indonesia
         refreshLayout.isRefreshing = false
         progress.gone()
+        showViews()
+    }
+
+    private fun showViews() {
         titleRecovered.visible()
         titlePositive.visible()
         titleDeath.visible()
         titleTotalCase.visible()
-
-        tvTotalCases.text = indonesia.caseNumber
-        tvRecovered.text = indonesia.recovered
-        tvPositive.text = indonesia.positive
-        tvDeath.text = indonesia.death
     }
 
-    private fun btnAction() {
-        btnToMap.setOnClickListener {
+    private fun btnActions() {
+        mapCardView.setOnClickListener {
             val action = DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
+        qandaCardView.setOnClickListener {
+            val action = DashboardFragmentDirections.actionDashboardFragmentToQandAFragment()
             Navigation.findNavController(it).navigate(action)
         }
     }

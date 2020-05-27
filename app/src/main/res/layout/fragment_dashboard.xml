@@ -2,6 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="indonesia"
+            type="com.fahmisbas.covid19id.model.Indonesia" />
+    </data>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -92,6 +100,7 @@
                                     android:id="@+id/tvTotalCases"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:text="@{indonesia.caseNumber}"
                                     android:layout_gravity="center_horizontal"
                                     android:fontFamily="@font/googlesansregular"
                                     android:textColor="@android:color/white"
@@ -122,6 +131,7 @@
                                     android:id="@+id/tvPositive"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:text="@{indonesia.positive}"
                                     android:layout_gravity="center_horizontal"
                                     android:fontFamily="@font/googlesansregular"
                                     android:textColor="@color/color_confirmed"
@@ -153,6 +163,7 @@
                                     android:id="@+id/tvRecovered"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:text="@{indonesia.recovered}"
                                     android:layout_gravity="center_horizontal"
                                     android:fontFamily="@font/googlesansregular"
                                     android:textColor="@color/color_recovered"
@@ -186,6 +197,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:textColor="@color/color_death"
+                                    android:text="@{indonesia.death}"
                                     android:textSize="@dimen/_18ssp" />
                             </LinearLayout>
                         </GridLayout>
@@ -198,8 +210,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/cardview"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:background="@color/colorPrimary">
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/davy_grey"
+                    app:cardCornerRadius="@dimen/_5sdp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -209,22 +225,31 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_100sdp"
-                            android:src="@color/davy_grey" />
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dummy_map" />
 
-                        <androidx.cardview.widget.CardView
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@color/davy_grey">
 
-                            <Button
-                                android:id="@+id/btnToMap"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@color/colorPrimary"
-                                android:text="To Map"
-                                android:textColor="@android:color/white" />
+                                android:fontFamily="@font/googlesansregular"
+                                android:text="Map"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/_13ssp" />
 
-                        </androidx.cardview.widget.CardView>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_arrow_forward" />
 
+                        </RelativeLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -233,40 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/mapCardView"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    app:cardBackgroundColor="@color/davy_grey"
-                    app:cardCornerRadius="@dimen/_5sdp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/_10sdp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:fontFamily="@font/googlesansbold"
-                            android:text="Pertanyaan &amp; jawaban terkait Coronavirus"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/_13ssp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_arrow_forward" />
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/mythBusterCardView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/qandaCardView"
+                    android:clickable="true"
                     android:layout_marginTop="@dimen/_15sdp"
                     app:cardBackgroundColor="@color/davy_grey"
                     app:cardCornerRadius="@dimen/_5sdp">
@@ -280,8 +272,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:fontFamily="@font/googlesansbold"
-                            android:text="Myth-Busters"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/googlesansregular"
+                            android:text="Pertanyaan &amp; jawaban terkait \nCoronavirus"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_13ssp" />
 
@@ -295,7 +288,6 @@
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
-
             </RelativeLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
