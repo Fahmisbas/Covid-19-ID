@@ -1,4 +1,4 @@
-package com.fahmisbas.covid19id.view.map
+package com.fahmisbas.covid19id.ui.map
 
 import android.os.Bundle
 import android.view.View
@@ -6,11 +6,11 @@ import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.databinding.FragmentMapBinding
 import com.fahmisbas.covid19id.model.ProvinceResult
+import com.fahmisbas.covid19id.ui.adapter.ProvinceAdapter
+import com.fahmisbas.covid19id.ui.base.BaseFragment
 import com.fahmisbas.covid19id.util.gone
 import com.fahmisbas.covid19id.util.observe
 import com.fahmisbas.covid19id.util.visible
-import com.fahmisbas.covid19id.view.adapter.ProvinceAdapter
-import com.fahmisbas.covid19id.view.base.BaseFragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback

@@ -1,4 +1,4 @@
-package com.fahmisbas.covid19id.view.dashboard
+package com.fahmisbas.covid19id.ui.dashboard
 
 import android.os.Bundle
 import android.view.View
@@ -6,11 +6,11 @@ import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.databinding.FragmentDashboardBinding
 import com.fahmisbas.covid19id.model.Indonesia
+import com.fahmisbas.covid19id.ui.base.BaseFragment
 import com.fahmisbas.covid19id.util.gone
 import com.fahmisbas.covid19id.util.invisible
 import com.fahmisbas.covid19id.util.observe
 import com.fahmisbas.covid19id.util.visible
-import com.fahmisbas.covid19id.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBinding>() {

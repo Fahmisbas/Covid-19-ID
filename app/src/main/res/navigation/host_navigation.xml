@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.fahmisbas.covid19id.view.dashboard.DashboardFragment"
+        android:name="com.fahmisbas.covid19id.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment" >
         <action
             android:id="@+id/actionDashboardFragmentToMapFragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.fahmisbas.covid19id.view.map.MapFragment"
+        android:name="com.fahmisbas.covid19id.ui.map.MapFragment"
         android:label="MapFragment" >
         <action
             android:id="@+id/actionMapFragmentToDashboardFragment"
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/qandAFragment"
-        android:name="com.fahmisbas.covid19id.view.qa.QandAFragment"
+        android:name="com.fahmisbas.covid19id.ui.qa.QandAFragment"
         android:label="fragment_q_and_a"
         tools:layout="@layout/fragment_q_and_a" />
 </navigation>

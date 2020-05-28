@@ -1,4 +1,4 @@
-package com.fahmisbas.covid19id.view.base
+package com.fahmisbas.covid19id.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

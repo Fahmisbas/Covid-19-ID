@@ -1,4 +1,4 @@
-package com.fahmisbas.covid19id.view.qa
+package com.fahmisbas.covid19id.ui.qa
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

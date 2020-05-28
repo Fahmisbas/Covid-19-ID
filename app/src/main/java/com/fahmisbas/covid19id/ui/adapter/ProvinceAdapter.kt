@@ -1,4 +1,4 @@
-package com.fahmisbas.covid19id.view.adapter
+package com.fahmisbas.covid19id.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

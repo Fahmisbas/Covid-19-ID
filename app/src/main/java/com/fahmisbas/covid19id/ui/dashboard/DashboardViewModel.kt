@@ -1,12 +1,11 @@
-package com.fahmisbas.covid19id.view.dashboard
+package com.fahmisbas.covid19id.ui.dashboard
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fahmisbas.covid19id.model.ApiService
 import com.fahmisbas.covid19id.model.Indonesia
-import retrofit2.Callback
-
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class DashboardViewModel: ViewModel() {

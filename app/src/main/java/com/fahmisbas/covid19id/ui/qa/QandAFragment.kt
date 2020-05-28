@@ -1,13 +1,13 @@
-package com.fahmisbas.covid19id.view.qa
+package com.fahmisbas.covid19id.ui.qa
 
 import android.os.Bundle
 import android.view.View
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.databinding.FragmentQAndABinding
 import com.fahmisbas.covid19id.model.QandA
+import com.fahmisbas.covid19id.ui.adapter.QandAdapter
+import com.fahmisbas.covid19id.ui.base.BaseFragment
 import com.fahmisbas.covid19id.util.observe
-import com.fahmisbas.covid19id.view.adapter.QandAdapter
-import com.fahmisbas.covid19id.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_q_and_a.*
 
 
