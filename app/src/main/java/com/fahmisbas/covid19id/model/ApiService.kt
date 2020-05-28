@@ -10,28 +10,32 @@ class ApiService  {
 
     private val qandaBaseUrl = "https://raw.githubusercontent.com/"
 
-    private val apiService = Retrofit.Builder()
+    private val coronaCaseService = Retrofit.Builder()
         .baseUrl(coronaCasesBaseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(Api::class.java)
 
-    private val apiService2 = Retrofit.Builder()
+    private val qandAService = Retrofit.Builder()
         .baseUrl(qandaBaseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(Api::class.java)
 
     fun getProvince() : Call<ProvinceResult> {
-        return apiService.getProvince()
+        return coronaCaseService.getProvince()
     }
 
     fun getIndonesia() : Call<Indonesia> {
-        return apiService.getIndonesia()
+        return coronaCaseService.getIndonesia()
     }
 
     fun getQandA(): Call<List<QandA>> {
-        return apiService2.getWhoQandA()
+        return qandAService.getWhoQandA()
+    }
+
+    fun getMythBuster(): Call<List<MythBuster>> {
+        return qandAService.getMythBuster()
     }
 
 }

@@ -26,11 +26,10 @@
                 android:textSize="@dimen/_15ssp" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMythBuster"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerMythBuster"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="@dimen/_200sdp" />
 
             <TextView
                 android:layout_width="match_parent"

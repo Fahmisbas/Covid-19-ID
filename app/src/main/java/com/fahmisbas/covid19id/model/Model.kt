@@ -36,3 +36,5 @@ data class QandA(
     val title : String,
     val subtitle : String
 )
+
+data class MythBuster(val url: String?)

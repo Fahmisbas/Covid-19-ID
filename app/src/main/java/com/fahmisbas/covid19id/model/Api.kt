@@ -14,4 +14,7 @@ interface Api {
     @GET("Fahmisbas/MediumNote/9dbedde9a22facb4995077503ae53ac2c1847c97/app/src/main/res/values/who_corona_advice.json")
     fun getWhoQandA() : Call<List<QandA>>
 
+    @GET("Fahmisbas/MediumNote/master/app/src/main/res/values/mythbuster.json")
+    fun getMythBuster(): Call<List<MythBuster>>
+
 }
