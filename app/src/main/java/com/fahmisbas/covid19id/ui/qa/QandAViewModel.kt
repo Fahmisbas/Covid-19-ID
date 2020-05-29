@@ -2,9 +2,9 @@ package com.fahmisbas.covid19id.ui.qa
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fahmisbas.covid19id.model.ApiService
-import com.fahmisbas.covid19id.model.MythBuster
-import com.fahmisbas.covid19id.model.QandA
+import com.fahmisbas.covid19id.data.MythBuster
+import com.fahmisbas.covid19id.data.QandA
+import com.fahmisbas.covid19id.data.httprequest.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

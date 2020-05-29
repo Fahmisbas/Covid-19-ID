@@ -6,7 +6,7 @@
 
         <variable
             name="province"
-            type="com.fahmisbas.covid19id.model.Province" />
+            type="com.fahmisbas.covid19id.data.Province" />
     </data>
 
     <androidx.cardview.widget.CardView

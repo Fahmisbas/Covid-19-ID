@@ -51,9 +51,12 @@
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/search"
-                        style="@style/Widget.AppCompat.Light.SearchView"
+                        style="@style/SearchViewStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:outlineAmbientShadowColor="@android:color/white"
+                        android:outlineSpotShadowColor="@android:color/white"
+                        app:queryHint="Belom suntuk malam"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_10sdp" />

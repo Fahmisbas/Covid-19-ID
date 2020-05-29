@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fahmisbas.covid19id.R
+import com.fahmisbas.covid19id.data.QandA
 import com.fahmisbas.covid19id.databinding.ItemQAndABinding
-import com.fahmisbas.covid19id.model.QandA
 
 class QandAdapter(private val qandAList: ArrayList<QandA>) :
     RecyclerView.Adapter<QandAdapter.ViewHolder>() {

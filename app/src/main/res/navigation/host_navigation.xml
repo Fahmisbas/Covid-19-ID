@@ -32,5 +32,9 @@
         android:id="@+id/qandAFragment"
         android:name="com.fahmisbas.covid19id.ui.qa.QandAFragment"
         android:label="fragment_q_and_a"
-        tools:layout="@layout/fragment_q_and_a" />
+        tools:layout="@layout/fragment_q_and_a">
+        <action
+            android:id="@+id/actionQandAFragmentToDashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>

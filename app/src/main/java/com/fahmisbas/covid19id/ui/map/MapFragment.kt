@@ -2,10 +2,12 @@ package com.fahmisbas.covid19id.ui.map
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
+import com.fahmisbas.covid19id.data.ProvinceResult
 import com.fahmisbas.covid19id.databinding.FragmentMapBinding
-import com.fahmisbas.covid19id.model.ProvinceResult
 import com.fahmisbas.covid19id.ui.adapter.ProvinceAdapter
 import com.fahmisbas.covid19id.ui.base.BaseFragment
 import com.fahmisbas.covid19id.util.gone
@@ -36,8 +38,28 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
 
         initViews()
         btnAction()
+        searchBar()
         btnExpand()
 
+    }
+
+    private fun searchBar() {
+        if (progress.visibility == View.VISIBLE) {
+            search.gone()
+        } else {
+            search.visible()
+        }
+        search.imeOptions = EditorInfo.IME_ACTION_SEARCH
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                provinceAdapter.getFiler().filter(newText)
+                return false
+            }
+        })
     }
 
     private fun initViews(){
@@ -101,3 +123,4 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
 
     override fun getFragmentView() = R.layout.fragment_map
 }
+

@@ -6,7 +6,7 @@
 
         <variable
             name="indonesia"
-            type="com.fahmisbas.covid19id.model.Indonesia" />
+            type="com.fahmisbas.covid19id.data.Indonesia" />
     </data>
 
 

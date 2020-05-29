@@ -1,4 +1,4 @@
-package com.fahmisbas.covid19id.model
+package com.fahmisbas.covid19id.data
 
 import com.google.gson.annotations.SerializedName
 
@@ -32,9 +32,6 @@ data class Indonesia(
     val caseNumber : String
 )
 
-data class QandA(
-    val title : String,
-    val subtitle : String
-)
+data class QandA(val title: String, val subtitle: String)
 
 data class MythBuster(val url: String?)

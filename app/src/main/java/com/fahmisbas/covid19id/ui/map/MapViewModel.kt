@@ -2,8 +2,8 @@ package com.fahmisbas.covid19id.ui.map
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fahmisbas.covid19id.model.ApiService
-import com.fahmisbas.covid19id.model.ProvinceResult
+import com.fahmisbas.covid19id.data.ProvinceResult
+import com.fahmisbas.covid19id.data.httprequest.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -11,7 +11,8 @@ import retrofit2.Response
 
 class MapViewModel : ViewModel() {
 
-    private val apiService = ApiService()
+    private val apiService =
+        ApiService()
 
     val province = MutableLiveData<ProvinceResult>()
     val error = MutableLiveData<Boolean>()

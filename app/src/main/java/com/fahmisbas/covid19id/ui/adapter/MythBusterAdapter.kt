@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.model.MythBuster
+import com.fahmisbas.covid19id.data.MythBuster
 import com.fahmisbas.covid19id.util.loadImage
 
 class MythBusterAdapter(private val mythBusterList: ArrayList<MythBuster>) : PagerAdapter() {

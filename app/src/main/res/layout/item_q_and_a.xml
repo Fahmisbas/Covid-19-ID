@@ -6,7 +6,7 @@
 
         <variable
             name="qAndA"
-            type="com.fahmisbas.covid19id.model.QandA" />
+            type="com.fahmisbas.covid19id.data.QandA" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -34,7 +34,7 @@
                 android:fontFamily="@font/googlesansbold"
                 android:text="@{qAndA.title}"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_15ssp"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,7 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_12ssp"
                 android:fontFamily="@font/googlesansregular"
                 android:text="@{qAndA.subtitle}"
                 android:textColor="@android:color/white" />

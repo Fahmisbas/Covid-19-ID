@@ -1,5 +1,9 @@
-package com.fahmisbas.covid19id.model
+package com.fahmisbas.covid19id.data.httprequest
 
+import com.fahmisbas.covid19id.data.Indonesia
+import com.fahmisbas.covid19id.data.MythBuster
+import com.fahmisbas.covid19id.data.ProvinceResult
+import com.fahmisbas.covid19id.data.QandA
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

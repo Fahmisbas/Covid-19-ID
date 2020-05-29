@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
+import com.fahmisbas.covid19id.data.Indonesia
 import com.fahmisbas.covid19id.databinding.FragmentDashboardBinding
-import com.fahmisbas.covid19id.model.Indonesia
 import com.fahmisbas.covid19id.ui.base.BaseFragment
 import com.fahmisbas.covid19id.util.gone
 import com.fahmisbas.covid19id.util.invisible
@@ -20,6 +20,7 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
         super.onViewCreated(view, savedInstanceState)
 
         hideViews()
+
         refreshLayout()
         btnActions()
 
@@ -47,6 +48,7 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
 
     private fun updateViews(indonesia: Indonesia) {
         binding.indonesia = indonesia
+
         refreshLayout.isRefreshing = false
         progress.gone()
         showViews()

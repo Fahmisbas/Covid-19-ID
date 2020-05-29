@@ -3,5 +3,5 @@
     android:id="@+id/imgMythBuster"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_5sdp"
+    android:padding="@dimen/_20sdp"
     android:src="@drawable/dummy_map" />

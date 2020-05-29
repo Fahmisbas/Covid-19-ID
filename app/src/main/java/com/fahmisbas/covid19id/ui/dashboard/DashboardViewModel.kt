@@ -2,8 +2,8 @@ package com.fahmisbas.covid19id.ui.dashboard
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fahmisbas.covid19id.model.ApiService
-import com.fahmisbas.covid19id.model.Indonesia
+import com.fahmisbas.covid19id.data.Indonesia
+import com.fahmisbas.covid19id.data.httprequest.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
