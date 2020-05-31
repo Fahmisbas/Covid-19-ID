@@ -16,7 +16,9 @@
             app:exitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_dashboardFragment_to_qandAFragment"
-            app:destination="@id/qandAFragment" />
+            app:destination="@id/qandAFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -35,6 +37,8 @@
         tools:layout="@layout/fragment_q_and_a">
         <action
             android:id="@+id/actionQandAFragmentToDashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
 </navigation>

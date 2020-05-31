@@ -6,7 +6,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.ProvinceResult
+import com.fahmisbas.covid19id.data.Province
 import com.fahmisbas.covid19id.databinding.FragmentMapBinding
 import com.fahmisbas.covid19id.ui.adapter.ProvinceAdapter
 import com.fahmisbas.covid19id.ui.base.BaseFragment
@@ -33,7 +33,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        search.visibility = View.GONE
+
         viewModel.fetch()
 
         initViews()
@@ -41,14 +41,10 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
         searchBar()
         btnExpand()
 
+
     }
 
     private fun searchBar() {
-        if (progress.visibility == View.VISIBLE) {
-            search.gone()
-        } else {
-            search.visible()
-        }
         search.imeOptions = EditorInfo.IME_ACTION_SEARCH
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -102,8 +98,8 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
         observe(viewModel.error,::displayError)
     }
 
-    private fun updateData(provinceResult: ProvinceResult) {
-        provinceAdapter.updateProvinceList(provinceResult.provinceList)
+    private fun updateData(province: List<Province>) {
+        provinceAdapter.updateProvinceList(province)
         updateView()
     }
 
