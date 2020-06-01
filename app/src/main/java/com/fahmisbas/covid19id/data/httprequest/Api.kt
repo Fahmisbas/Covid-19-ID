@@ -1,9 +1,6 @@
 package com.fahmisbas.covid19id.data.httprequest
 
-import com.fahmisbas.covid19id.data.Indonesia
-import com.fahmisbas.covid19id.data.MythBuster
-import com.fahmisbas.covid19id.data.ProvinceResult
-import com.fahmisbas.covid19id.data.QandA
+import com.fahmisbas.covid19id.data.*
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -20,5 +17,8 @@ interface Api {
 
     @GET("Fahmisbas/MediumNote/master/app/src/main/res/values/mythbuster.json")
     fun getMythBuster(): Call<List<MythBuster>>
+
+    @GET("Fahmisbas/MediumNote/master/app/src/main/res/values/indonesia_provinces_location.json")
+    fun getProvinceLocation() : Call<ProvinceLocationResult>
 
 }

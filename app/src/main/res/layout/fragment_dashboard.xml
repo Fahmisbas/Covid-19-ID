@@ -9,12 +9,12 @@
             type="com.fahmisbas.covid19id.data.Indonesia" />
     </data>
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
+
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -39,10 +39,11 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/_20sdp">
 
             <RelativeLayout
@@ -100,9 +101,9 @@
                                     android:id="@+id/tvTotalCases"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@{indonesia.caseNumber}"
                                     android:layout_gravity="center_horizontal"
                                     android:fontFamily="@font/googlesansregular"
+                                    android:text="@{indonesia.caseNumber}"
                                     android:textColor="@android:color/white"
                                     android:textSize="@dimen/_18ssp" />
                             </LinearLayout>
@@ -131,9 +132,9 @@
                                     android:id="@+id/tvPositive"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@{indonesia.positive}"
                                     android:layout_gravity="center_horizontal"
                                     android:fontFamily="@font/googlesansregular"
+                                    android:text="@{indonesia.positive}"
                                     android:textColor="@color/color_confirmed"
                                     android:textSize="@dimen/_18ssp" />
 
@@ -163,9 +164,9 @@
                                     android:id="@+id/tvRecovered"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@{indonesia.recovered}"
                                     android:layout_gravity="center_horizontal"
                                     android:fontFamily="@font/googlesansregular"
+                                    android:text="@{indonesia.recovered}"
                                     android:textColor="@color/color_recovered"
                                     android:textSize="@dimen/_18ssp" />
 
@@ -196,8 +197,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:textColor="@color/color_death"
                                     android:text="@{indonesia.death}"
+                                    android:textColor="@color/color_death"
                                     android:textSize="@dimen/_18ssp" />
                             </LinearLayout>
                         </GridLayout>
@@ -258,8 +259,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/mapCardView"
-                    android:clickable="true"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:cardBackgroundColor="@color/davy_grey"
                     app:cardCornerRadius="@dimen/_5sdp">
 
@@ -286,7 +288,42 @@
                             android:src="@drawable/ic_arrow_forward" />
 
                     </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/infographicCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/qandaCardView"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/davy_grey"
+                    app:cardCornerRadius="@dimen/_5sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_10sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/googlesansregular"
+                            android:text="Infographics"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/_13ssp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_arrow_forward" />
+
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

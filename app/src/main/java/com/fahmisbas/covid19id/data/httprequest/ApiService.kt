@@ -1,45 +1,45 @@
 package com.fahmisbas.covid19id.data.httprequest
 
-import com.fahmisbas.covid19id.data.Indonesia
-import com.fahmisbas.covid19id.data.MythBuster
-import com.fahmisbas.covid19id.data.ProvinceResult
-import com.fahmisbas.covid19id.data.QandA
+import com.fahmisbas.covid19id.data.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiService  {
 
-    private val coronaCasesBaseUrl = "https://indonesia-covid-19.mathdro.id/"
+    private val baseUrlProvinceCases = "https://indonesia-covid-19.mathdro.id/"
+    private val githubRawBaseUrl = "https://raw.githubusercontent.com/"
 
-    private val qandaBaseUrl = "https://raw.githubusercontent.com/"
-
-    private val coronaCaseService = Retrofit.Builder()
-        .baseUrl(coronaCasesBaseUrl)
+    private val mathdroidService = Retrofit.Builder()
+        .baseUrl(baseUrlProvinceCases)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(Api::class.java)
 
-    private val qandAService = Retrofit.Builder()
-        .baseUrl(qandaBaseUrl)
+    private val githubService = Retrofit.Builder()
+        .baseUrl(githubRawBaseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(Api::class.java)
 
     fun getProvince() : Call<ProvinceResult> {
-        return coronaCaseService.getProvince()
+        return mathdroidService.getProvince()
     }
 
     fun getIndonesia() : Call<Indonesia> {
-        return coronaCaseService.getIndonesia()
+        return mathdroidService.getIndonesia()
     }
 
     fun getQandA(): Call<List<QandA>> {
-        return qandAService.getWhoQandA()
+        return githubService.getWhoQandA()
     }
 
     fun getMythBuster(): Call<List<MythBuster>> {
-        return qandAService.getMythBuster()
+        return githubService.getMythBuster()
+    }
+
+    fun getProvinceLocation() : Call<ProvinceLocationResult> {
+        return githubService.getProvinceLocation()
     }
 
 }

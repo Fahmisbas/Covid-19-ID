@@ -22,7 +22,6 @@ class QandAViewModel(application: Application) : BaseViewModel(application) {
 
     fun fetch() {
         launch {
-
             val qandACache = DatabaseCache(getApplication()).qandADao().getQandA()
             val mythBusterCache = DatabaseCache(getApplication()).mythBusterDao().getMythBuster()
 

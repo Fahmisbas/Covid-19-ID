@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.fahmisbas.covid19id.data.MythBuster
-import com.fahmisbas.covid19id.data.Province
+import com.fahmisbas.covid19id.data.ProvinceCases
 import com.fahmisbas.covid19id.data.QandA
 
-@Database(entities = arrayOf(Province::class,QandA::class,MythBuster::class),version = 1)
+@Database(entities = arrayOf(ProvinceCases::class,QandA::class,MythBuster::class),version = 1)
 abstract class DatabaseCache : RoomDatabase(){
 
     abstract fun provinceDao() : ProvinceDao

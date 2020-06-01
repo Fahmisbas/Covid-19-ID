@@ -5,26 +5,60 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
+data class ProvinceLocationResult(
+
+    @SerializedName("lacation")
+    val locationList : List<ProvinceLocation>
+
+)
+
+data class ProvinceLocation(
+
+    val lat : String,
+    val lng : String,
+    @SerializedName("provinsi")
+    val provinceName: String
+
+) : Comparable<ProvinceLocation>
+{
+    override fun compareTo(other: ProvinceLocation): Int {
+        var compare = provinceName.compareTo(other.provinceName)
+        if (compare == 0){
+            compare = Integer.compare(lat.toInt(), other.lat.toInt())
+        }
+        return compare
+    }
+}
+
 data class ProvinceResult(
 
     @SerializedName("data")
-    val provinceList : List<Province>
+    val provinceCasesList : List<ProvinceCases>
 )
 
 @Entity
-data class Province(
+data class ProvinceCases(
 
     @SerializedName("provinsi")
-    val provinceName : String?,
+    val provinceName : String,
     @SerializedName("kasusPosi")
-    val positive : String?,
+    val positive : String,
     @SerializedName("kasusSemb")
-    val recovered : String?,
+    val recovered : String,
     @SerializedName("kasusMeni")
-    val death : String?
-){
+    val death : String
+) : Comparable<ProvinceCases>
+{
     @PrimaryKey(autoGenerate = true)
     var uuid : Int = 0
+
+    override fun compareTo(other: ProvinceCases): Int {
+        var compare = provinceName.compareTo(other.provinceName)
+        if (compare == 0){
+            compare = Integer.compare(positive.toInt(),other.positive.toInt())
+        }
+        return compare
+    }
 }
 
 data class Indonesia(
@@ -40,10 +74,7 @@ data class Indonesia(
 
 
 @Entity
-data class QandA(
-    val title: String,
-    val subtitle: String
-){
+data class QandA(val title: String, val subtitle: String){
     @PrimaryKey(autoGenerate = true)
     var uuid : Int = 0
 }

@@ -32,7 +32,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_280sdp" />
 
-
                     <LinearLayout
                         android:id="@+id/provinceSection"
                         android:layout_width="match_parent"
@@ -55,18 +54,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:outlineAmbientShadowColor="@android:color/white"
-                            android:outlineSpotShadowColor="@android:color/white"
                             android:visibility="gone"
                             app:queryHint="Belom suntuk malam" />
+
 
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
-
-
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvProvinces"
                                 android:layout_width="match_parent"
