@@ -8,77 +8,98 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/btnToDashboard"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_margin="@dimen/_15sdp"
-                    android:background="@drawable/ic_arrow_back" />
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/davy_grey"
+                app:cardCornerRadius="@dimen/_20sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/btnToDashboard"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_arrow_back" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_280sdp" />
 
                 <LinearLayout
+                    android:id="@+id/provinceSection"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
+                    android:background="@color/davy_grey"
                     android:orientation="vertical">
 
-                    <com.google.android.gms.maps.MapView
-                        android:id="@+id/map"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_280sdp" />
 
-                    <LinearLayout
-                        android:id="@+id/provinceSection"
+                    <ImageButton
+                        android:id="@+id/btnExpand"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:background="@color/davy_grey"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btnExpand"
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:background="@drawable/ic_expand_less" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_expand_less" />
 
 
-                        <androidx.appcompat.widget.SearchView
-                            android:id="@+id/search"
-                            style="@style/SearchViewStyle"
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search"
+                        style="@style/SearchViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:visibility="gone"
+                        app:queryHint="Belom suntuk malam" />
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvProvinces"
                             android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/davy_grey"
+                            android:visibility="visible"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_province" />
+
+                        <ProgressBar
+                            android:id="@+id/progress"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:visibility="gone"
-                            app:queryHint="Belom suntuk malam" />
-
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rvProvinces"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/davy_grey"
-                                android:visibility="visible"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/item_province" />
-
-                            <ProgressBar
-                                android:id="@+id/progress"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
-                        </FrameLayout>
-                    </LinearLayout>
+                            android:layout_gravity="center" />
+                    </FrameLayout>
                 </LinearLayout>
-            </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </FrameLayout>
 </layout>
 

@@ -2,10 +2,7 @@ package com.fahmisbas.covid19id.ui.map
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.fahmisbas.covid19id.data.ProvinceCases
-import com.fahmisbas.covid19id.data.ProvinceLocation
-import com.fahmisbas.covid19id.data.ProvinceLocationResult
-import com.fahmisbas.covid19id.data.ProvinceResult
+import com.fahmisbas.covid19id.data.*
 import com.fahmisbas.covid19id.data.db.DatabaseCache
 import com.fahmisbas.covid19id.data.httprequest.ApiService
 import com.fahmisbas.covid19id.ui.base.BaseViewModel
@@ -14,15 +11,17 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 
 class MapViewModel(application: Application) : BaseViewModel(application) {
 
 
-    val provinceCases = MutableLiveData<List<ProvinceCases>>()
-    val locations = MutableLiveData<List<ProvinceLocation>>()
+    val provinceData = MutableLiveData<List<ProvinceData>>()
     val error = MutableLiveData<Boolean>()
 
+    private var caseList = arrayListOf<ProvinceCases>()
+    private var locationList = arrayListOf<ProvinceLocation>()
 
     private val apiService = ApiService()
 
@@ -31,14 +30,20 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
 
     fun fetch() {
         checkCacheDuration()
-        fetchProvinceLocationFromEndPoint()
         val updateTime = prefHelper.getUpdateTime()
         if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
-            fetchProvinceCasesFromDatabase()
-            fetchProvinceLocationFromDatabase()
+            fetchFromDatabase()
         } else {
             fetchProvinceCasesFromEndpoint()
-            fetchProvinceLocationFromEndPoint()
+            fetchProvinceLocationFromEndpoint()
+        }
+    }
+
+    private fun fetchFromDatabase() {
+        launch {
+            val provinceData =
+                DatabaseCache(getApplication()).provinceDataDao().getAllProvinceData()
+            retrieved(provinceData)
         }
     }
 
@@ -52,38 +57,36 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun fetchProvinceLocationFromDatabase() {}
-    private fun fetchProvinceCasesFromDatabase() {
-        launch {
-            val province = DatabaseCache(getApplication()).provinceDao().getAllProvinces()
-            retrieved(province)
-        }
-    }
-
     private fun fetchProvinceCasesFromEndpoint() {
         apiService.getProvince().enqueue(object : Callback<ProvinceResult> {
-            override fun onResponse(call: Call<ProvinceResult>, response: Response<ProvinceResult>) {
+            override fun onResponse(
+                call: Call<ProvinceResult>,
+                response: Response<ProvinceResult>
+            ) {
                 if (response.isSuccessful) {
-                    val result = response.body()?.provinceCasesList
-                    if (result != null && result.isNotEmpty()) {
-                        storeProvinceCasesLocally(result)
+                    response.body()?.provinceCasesList.let { result ->
+                        if (result != null && result.isNotEmpty()) {
+                            caseList = result as ArrayList<ProvinceCases>
+                            addProvinceData()
+                        }
                     }
                 }
             }
-
             override fun onFailure(call: Call<ProvinceResult>, t: Throwable) {
                 error.value = true
             }
         })
     }
 
-    private fun fetchProvinceLocationFromEndPoint() {
+    private fun fetchProvinceLocationFromEndpoint() {
         apiService.getProvinceLocation().enqueue(object : Callback<ProvinceLocationResult> {
             override fun onResponse(call: Call<ProvinceLocationResult>, response: Response<ProvinceLocationResult>) {
                 if (response.isSuccessful) {
-                    val result = response.body()?.locationList
-                    if (result != null && result.isNotEmpty()) {
-                        locations.value = result
+                    response.body()?.locationList.let { result ->
+                        if (result != null && result.isNotEmpty()) {
+                            locationList = result as ArrayList<ProvinceLocation>
+                            addProvinceData()
+                        }
                     }
                 }
             }
@@ -93,18 +96,43 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
         })
     }
 
-    private fun storeProvinceCasesLocally(list: List<ProvinceCases>?) {
+    private fun addProvinceData() {
+        val provinceData = arrayListOf<ProvinceData>()
+
+        if (caseList.isNotEmpty() && locationList.isNotEmpty()) {
+            for (position in 0 until locationList.size) {
+                if (caseList.size > 0 && locationList.size > 0) {
+                    val location = locationList[position]
+                    val cases = caseList[position]
+
+                    provinceData.add(
+                        ProvinceData(
+                            location.lat, location.lng,
+                            cases.provinceName,
+                            cases.positive,
+                            cases.recovered,
+                            cases.death
+                        )
+                    )
+                }
+            }
+            storeProvinceDataLocally(provinceData)
+        }
+    }
+
+    private fun storeProvinceDataLocally(provinceData: ArrayList<ProvinceData>) {
         launch {
-            val dao = DatabaseCache(getApplication()).provinceDao()
-            dao.deleteAllProvinces()
-            dao.insertProvinces(*list!!.toTypedArray())
-            retrieved(list)
+            val dao = DatabaseCache(getApplication()).provinceDataDao()
+            dao.deleteAllProvinceData()
+            dao.insertProvinceData(*provinceData.toTypedArray())
+            retrieved(provinceData)
         }
         prefHelper.saveUpdateTime(System.nanoTime())
     }
 
-    private fun retrieved(list: List<ProvinceCases>) {
-        provinceCases.value = list
+    private fun retrieved(list: List<ProvinceData>) {
+        Collections.sort(list, reverseOrder())
+        provinceData.value = list
         error.value = false
     }
 }

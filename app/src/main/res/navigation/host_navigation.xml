@@ -28,7 +28,9 @@
             android:id="@+id/actionMapFragmentToDashboardFragment"
             app:destination="@id/dashboardFragment"
             app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_fade_exit" />
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/qandAFragment"
@@ -39,6 +41,8 @@
             android:id="@+id/actionQandAFragmentToDashboardFragment"
             app:destination="@id/dashboardFragment"
             app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_fade_exit" />
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

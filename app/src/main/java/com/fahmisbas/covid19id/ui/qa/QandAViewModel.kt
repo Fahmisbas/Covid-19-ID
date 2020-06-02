@@ -24,8 +24,7 @@ class QandAViewModel(application: Application) : BaseViewModel(application) {
         launch {
             val qandACache = DatabaseCache(getApplication()).qandADao().getQandA()
             val mythBusterCache = DatabaseCache(getApplication()).mythBusterDao().getMythBuster()
-
-            if (qandACache.isNullOrEmpty() || mythBusterCache.isNullOrEmpty()) {
+            if (qandACache.isEmpty() || mythBusterCache.isEmpty()) {
                 fetchQandADataFromEndpoint()
                 fetchMythBusterFromEndpoint()
             } else {

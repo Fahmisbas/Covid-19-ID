@@ -10,8 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.ProvinceCases
-import com.fahmisbas.covid19id.data.ProvinceLocation
+import com.fahmisbas.covid19id.data.ProvinceData
 import com.fahmisbas.covid19id.databinding.FragmentMapBinding
 import com.fahmisbas.covid19id.ui.adapter.ProvinceAdapter
 import com.fahmisbas.covid19id.ui.base.BaseFragment
@@ -31,35 +30,39 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     private var isPressed = false;
 
     private var provinceAdapter = ProvinceAdapter(arrayListOf())
-
-    private var sortedCasesList = arrayListOf<ProvinceCases>()
-    private var sortedLocationList = arrayListOf<ProvinceLocation>()
-
     private var googleMap: GoogleMap? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.fetch()
-
-
-
         initViews()
-        btnAction()
-        searchBar()
-        btnExpand()
     }
 
     override fun onMapReady(p0: GoogleMap?) {
         MapsInitializer.initialize(context)
         googleMap = p0
-
+        googleMap?.uiSettings?.isMapToolbarEnabled = false
         val mapStyleOptions = MapStyleOptions.loadRawResourceStyle(context, R.raw.style_map)
         googleMap?.setMapStyle(mapStyleOptions)
-        val indonesia = LatLng(-0.789275,113.9213257)
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia,4.0f))
 
+        val indonesia = LatLng(-0.789275, 113.9213257)
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 3.7f))
 
+    }
+
+    private fun initViews() {
+        map?.onCreate(null)
+        map?.onResume()
+        map?.getMapAsync(this)
+
+        rvProvinces.apply {
+            adapter = provinceAdapter
+        }
+
+        btnAction()
+        searchBar()
+        btnExpand()
     }
 
     private fun searchBar() {
@@ -74,16 +77,6 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
                 return false
             }
         })
-    }
-
-    private fun initViews() {
-        map?.onCreate(null)
-        map?.onResume()
-        map?.getMapAsync(this)
-
-        rvProvinces.apply {
-            adapter = provinceAdapter
-        }
     }
 
     private fun btnAction() {
@@ -112,61 +105,50 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     }
 
     override fun observeChanges() {
-        observe(viewModel.provinceCases,::updateProvinceCasesRecyclerView)
-        observe(viewModel.error,::displayError)
+        observe(viewModel.provinceData, ::updateProvinceCasesRecyclerView)
+        observe(viewModel.error, ::displayError)
 
-        observe(viewModel.provinceCases, ::sortCasesList)
-        observe(viewModel.locations, ::sortLocationsList)
+        observe(viewModel.provinceData, ::setMapData)
+
     }
 
-    private fun updateProvinceCasesRecyclerView(provinceCasesCases: List<ProvinceCases>) {
+    private fun updateProvinceCasesRecyclerView(provinceCasesCases: List<ProvinceData>) {
         provinceAdapter.updateProvinceCasesList(provinceCasesCases)
         progress.gone()
     }
 
-
-    private fun sortCasesList(cases: List<ProvinceCases>) {
-        sortedCasesList.clear()
-        sortedCasesList.addAll(cases)
-        sortedCasesList.sort()
-    }
-
-    private fun sortLocationsList(locations: List<ProvinceLocation>) {
-        sortedLocationList.clear()
-        sortedLocationList.addAll(locations)
-        sortedLocationList.sort()
-
-        for (position in 0 until sortedLocationList.size - 1) {
-            if (sortedCasesList.size > 0 && sortedLocationList.size > 0) {
+    private fun setMapData(list: List<ProvinceData>) {
+        for (provinceData in list) {
+            if (list.isNotEmpty()) {
                 markMap(
-                    lat = sortedLocationList[position].lat,
-                    lng = sortedLocationList[position].lng,
-                    provinceName = sortedCasesList[position].provinceName,
-                    positive = sortedCasesList[position].positive,
-                    recovered = sortedCasesList[position].recovered,
-                    death = sortedCasesList[position].death
+                    lat = provinceData.lat,
+                    lng = provinceData.lng,
+                    provinceName = provinceData.provinceName,
+                    positive = provinceData.positive,
+                    recovered = provinceData.recovered,
+                    death = provinceData.death
                 )
             }
         }
     }
 
+    private fun markMap(
+        lat: String, lng: String, provinceName: String, positive: String,
+        recovered: String,
+        death: String
+    ) {
 
-    private fun markMap(lat: String, lng: String,provinceName : String,positive : String,recovered : String,death : String) {
-
-        googleMap?.uiSettings?.isMapToolbarEnabled = false
-        val latLng = LatLng(lat.toDouble(), lng.toDouble())
+        val location = LatLng(lat.toDouble(), lng.toDouble())
 
         googleMap?.addMarker(
-            MarkerOptions().position(latLng).title("($provinceName) Positif : $positive " +
-                    "Sembuh : $recovered Meninggal : $death"
-            ).icon(
-                bitmapDescriptorFromVector(
-                    requireContext(), R.drawable.ic_red_circle
-                )
-            )
+            MarkerOptions().position(location).title(
+                "($provinceName) " +
+                        "Positif : $positive " +
+                        "Sembuh : $recovered " +
+                        "Meninggal : $death"
+            ).icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_red_circle))
         )
     }
-
 
     private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
         val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)

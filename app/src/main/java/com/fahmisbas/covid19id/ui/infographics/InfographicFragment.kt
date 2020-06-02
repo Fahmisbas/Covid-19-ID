@@ -8,7 +8,6 @@ import com.fahmisbas.covid19id.ui.base.BaseFragment
 class InfographicFragment : BaseFragment<InfrographicViewModel, FragmentInfographicsBinding>() {
 
 
-
     override fun getViewModel(): Class<InfrographicViewModel> = InfrographicViewModel::class.java
 
     override fun getFragmentView() = R.layout.fragment_infographics

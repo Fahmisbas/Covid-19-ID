@@ -48,8 +48,8 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
 
     private fun updateViews(indonesia: Indonesia) {
         binding.indonesia = indonesia
-
         refreshLayout.isRefreshing = false
+
         progress.gone()
         showViews()
     }

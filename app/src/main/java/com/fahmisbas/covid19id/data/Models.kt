@@ -81,3 +81,20 @@ data class QandA(val title: String, val subtitle: String){
 
 @Entity
 data class MythBuster(val url: String?){@PrimaryKey(autoGenerate = true) var uuid : Int = 0}
+
+@Entity
+data class ProvinceData(
+    val lat: String,
+    val lng: String,
+    val provinceName: String,
+    val positive: String,
+    val recovered: String,
+    val death: String
+) : Comparable<ProvinceData> {
+    @PrimaryKey(autoGenerate = true)
+    var uuid: Int = 0
+    override fun compareTo(other: ProvinceData): Int {
+        var compare = Integer.compare(positive.toInt(), other.positive.toInt())
+        return compare
+    }
+}

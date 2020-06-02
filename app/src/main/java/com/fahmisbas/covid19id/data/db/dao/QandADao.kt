@@ -1,4 +1,4 @@
-package com.fahmisbas.covid19id.data.db
+package com.fahmisbas.covid19id.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

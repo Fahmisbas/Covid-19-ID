@@ -9,8 +9,7 @@ fun getProgressDrawable(context: Context): CircularProgressDrawable {
     return CircularProgressDrawable(context).apply {
         strokeWidth = 20f
         centerRadius = 50f
-        backgroundColor = android.R.color.background_dark
-
+        backgroundColor = android.R.color.background_light
         start()
     }
 }

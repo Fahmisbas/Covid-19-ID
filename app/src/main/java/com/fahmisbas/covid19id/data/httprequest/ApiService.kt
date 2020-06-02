@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiService  {
 
     private val baseUrlProvinceCases = "https://indonesia-covid-19.mathdro.id/"
-    private val githubRawBaseUrl = "https://raw.githubusercontent.com/"
+    private val baseUrlGithubRaw = "https://raw.githubusercontent.com/"
 
     private val mathdroidService = Retrofit.Builder()
         .baseUrl(baseUrlProvinceCases)
@@ -17,7 +17,7 @@ class ApiService  {
         .create(Api::class.java)
 
     private val githubService = Retrofit.Builder()
-        .baseUrl(githubRawBaseUrl)
+        .baseUrl(baseUrlGithubRaw)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(Api::class.java)

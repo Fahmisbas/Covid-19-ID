@@ -6,18 +6,18 @@ import android.widget.Filter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.ProvinceCases
+import com.fahmisbas.covid19id.data.ProvinceData
 import com.fahmisbas.covid19id.databinding.ItemProvinceBinding
 
 
-class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceCases>) :
+class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceData>) :
     RecyclerView.Adapter<ProvinceAdapter.ViewHolder>() {
 
 
-    private lateinit var provinceCasesListFull: ArrayList<ProvinceCases>
+    private lateinit var provinceCasesListFull: ArrayList<ProvinceData>
 
 
-    fun updateProvinceCasesList(newList : List<ProvinceCases>) {
+    fun updateProvinceCasesList(newList: List<ProvinceData>) {
         provinceCasesListFull = ArrayList(newList)
         provinceCasesList.clear()
         provinceCasesList.addAll(newList)
@@ -32,7 +32,6 @@ class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceCases>) :
             parent,
             false
         )
-
         return ViewHolder(view)
     }
 
@@ -46,8 +45,8 @@ class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceCases>) :
 
     private val provinceFilter: Filter = object : Filter() {
         override fun performFiltering(constraint: CharSequence): FilterResults {
-            val filteredList: ArrayList<ProvinceCases> = ArrayList()
-            if (constraint == null || constraint.length == 0) {
+            val filteredList: ArrayList<ProvinceData> = ArrayList()
+            if (constraint.isEmpty()) {
                 filteredList.addAll(provinceCasesListFull)
             } else {
                 val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
@@ -64,7 +63,7 @@ class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceCases>) :
 
         override fun publishResults(constraint: CharSequence, results: FilterResults) {
             provinceCasesList.clear()
-            provinceCasesList.addAll(results.values as Collection<ProvinceCases>)
+            provinceCasesList.addAll(results.values as Collection<ProvinceData>)
             notifyDataSetChanged()
         }
     }

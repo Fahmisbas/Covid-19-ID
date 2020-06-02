@@ -5,15 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.fahmisbas.covid19id.data.MythBuster
-import com.fahmisbas.covid19id.data.ProvinceCases
+import com.fahmisbas.covid19id.data.ProvinceData
 import com.fahmisbas.covid19id.data.QandA
+import com.fahmisbas.covid19id.data.db.dao.MythBusterDao
+import com.fahmisbas.covid19id.data.db.dao.ProvinceDataDao
+import com.fahmisbas.covid19id.data.db.dao.QandADao
 
-@Database(entities = arrayOf(ProvinceCases::class,QandA::class,MythBuster::class),version = 1)
+@Database(entities = arrayOf(QandA::class, MythBuster::class, ProvinceData::class), version = 1)
 abstract class DatabaseCache : RoomDatabase(){
 
-    abstract fun provinceDao() : ProvinceDao
     abstract fun qandADao() : QandADao
     abstract fun mythBusterDao() : MythBusterDao
+    abstract fun provinceDataDao(): ProvinceDataDao
 
     companion object{
         @Volatile private var instance : DatabaseCache? = null
