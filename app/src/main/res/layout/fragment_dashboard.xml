@@ -14,25 +14,38 @@
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark">
 
-            <TextView
-                android:id="@+id/toolbarTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:adjustViewBounds="true"
-                android:fontFamily="@font/googlesansbold"
-                android:gravity="center_horizontal"
-                android:text="Covid 19 ID"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/_18sdp"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:adjustViewBounds="true"
+                    android:fontFamily="@font/googlesansbold"
+                    android:layout_centerInParent="true"
+                    android:text="Covid 19 ID"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_18sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/toolbarTitle"
+                    android:src="@drawable/ic_idnflag" />
+
+            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -81,6 +94,14 @@
                                         android:layout_gravity="center"
                                         android:visibility="visible" />
 
+                                    <TextView
+                                        android:id="@+id/errorMessage"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:textColor="@android:color/white"
+                                        android:visibility="gone" />
+
                                     <GridLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -91,8 +112,8 @@
                                         <LinearLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_rowWeight="2"
-                                            android:layout_columnWeight="2"
+                                            android:layout_rowWeight="1"
+                                            android:layout_columnWeight="1"
                                             android:layout_margin="@dimen/_20sdp"
                                             android:orientation="vertical">
 
@@ -122,8 +143,8 @@
                                         <LinearLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_rowWeight="2"
-                                            android:layout_columnWeight="2"
+                                            android:layout_rowWeight="1"
+                                            android:layout_columnWeight="1"
                                             android:layout_margin="@dimen/_20sdp"
                                             android:orientation="vertical">
 
@@ -154,8 +175,8 @@
                                         <LinearLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_rowWeight="2"
-                                            android:layout_columnWeight="2"
+                                            android:layout_rowWeight="1"
+                                            android:layout_columnWeight="1"
                                             android:layout_margin="@dimen/_20sdp"
                                             android:orientation="vertical">
 
@@ -186,8 +207,8 @@
                                         <LinearLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_rowWeight="2"
-                                            android:layout_columnWeight="2"
+                                            android:layout_rowWeight="1"
+                                            android:layout_columnWeight="1"
                                             android:layout_margin="@dimen/_20sdp"
                                             android:orientation="vertical">
 
@@ -285,7 +306,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/_100sdp"
                                         android:scaleType="centerCrop"
-                                        android:src="@drawable/dummy_map" />
+                                        android:src="@drawable/infographic" />
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"

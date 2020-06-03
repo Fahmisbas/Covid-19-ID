@@ -23,8 +23,11 @@ class DashboardViewModel(application: Application): BaseViewModel(application) {
     private fun fetchFromEndpoint() {
         apiService.getIndonesia().enqueue(object :  Callback<Indonesia> {
             override fun onResponse(call: Call<Indonesia>, response: Response<Indonesia>) {
-                val body = response.body()
-                retrieved(body!!)
+                if (response.isSuccessful) {
+                    response.body()?.let { result ->
+                        retrieved(result)
+                    }
+                }
             }
             override fun onFailure(call: Call<Indonesia>, t: Throwable) {
                 error.value = true

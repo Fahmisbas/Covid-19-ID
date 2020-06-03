@@ -64,9 +64,9 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
                 response: Response<ProvinceResult>
             ) {
                 if (response.isSuccessful) {
-                    response.body()?.provinceCasesList.let { result ->
-                        if (result != null && result.isNotEmpty()) {
-                            caseList = result as ArrayList<ProvinceCases>
+                    response.body()?.provinceCasesList?.let { result ->
+                        if (result.isNotEmpty()) {
+                            caseList = sortedCaseList(result)
                             addProvinceData()
                         }
                     }
@@ -82,9 +82,9 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
         apiService.getProvinceLocation().enqueue(object : Callback<ProvinceLocationResult> {
             override fun onResponse(call: Call<ProvinceLocationResult>, response: Response<ProvinceLocationResult>) {
                 if (response.isSuccessful) {
-                    response.body()?.locationList.let { result ->
-                        if (result != null && result.isNotEmpty()) {
-                            locationList = result as ArrayList<ProvinceLocation>
+                    response.body()?.locationList?.let { result ->
+                        if (result.isNotEmpty()) {
+                            locationList = sortedLocationList(result)
                             addProvinceData()
                         }
                     }
@@ -95,6 +95,36 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
             }
         })
     }
+
+    /*
+    sort lists, and then combine both data
+    in addProvinceData() method
+     */
+
+    private fun sortedCaseList(result: List<ProvinceCases>): ArrayList<ProvinceCases> {
+        val sorted = arrayListOf<ProvinceCases>()
+        if (result.isNotEmpty()) {
+            sorted.clear()
+            sorted.addAll(result)
+            sorted.sort()
+        }
+        return sorted
+    }
+
+    private fun sortedLocationList(result: List<ProvinceLocation>): ArrayList<ProvinceLocation> {
+        val sorted = arrayListOf<ProvinceLocation>()
+        if (result.isNotEmpty()) {
+            sorted.clear()
+            sorted.addAll(result)
+            sorted.sort()
+        }
+        return sorted
+    }
+
+    /*
+    after cases and location list is sorted, combining both data
+    into ProvinceData object
+     */
 
     private fun addProvinceData() {
         val provinceData = arrayListOf<ProvinceData>()
@@ -131,7 +161,6 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun retrieved(list: List<ProvinceData>) {
-        Collections.sort(list, reverseOrder())
         provinceData.value = list
         error.value = false
     }

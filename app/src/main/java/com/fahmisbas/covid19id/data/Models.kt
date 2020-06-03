@@ -94,7 +94,24 @@ data class ProvinceData(
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
     override fun compareTo(other: ProvinceData): Int {
-        var compare = Integer.compare(positive.toInt(), other.positive.toInt())
-        return compare
+        return provinceName.compareTo(other.provinceName)
     }
 }
+
+data class InfographicsResult(
+
+    @SerializedName("infographics")
+    val infographicList: List<Infographics>
+)
+
+data class Infographics(
+    val title: String,
+    @SerializedName("url1")
+    val picOne: String,
+    @SerializedName("url2")
+    val picTwo: String,
+    @SerializedName("url3")
+    val picThree: String,
+    @SerializedName("url4")
+    val picFour: String
+)

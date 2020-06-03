@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.fragment_map.*
 class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReadyCallback {
 
     private var isPressed = false;
+    val province = arrayListOf<ProvinceData>()
 
     private var provinceAdapter = ProvinceAdapter(arrayListOf())
     private var googleMap: GoogleMap? = null
@@ -71,7 +72,6 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 provinceAdapter.getFiler().filter(newText)
                 return false
@@ -91,12 +91,14 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
             isPressed = if (isPressed) {
                 map.gone()
                 btnToDashboard.gone()
+                backButtonBackground.gone()
                 search.visible()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_more)
                 false
             } else {
                 map.visible()
                 btnToDashboard.visible()
+                backButtonBackground.visible()
                 search.gone()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_less)
                 true
@@ -105,14 +107,14 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     }
 
     override fun observeChanges() {
-        observe(viewModel.provinceData, ::updateProvinceCasesRecyclerView)
+        observe(viewModel.provinceData, ::updateRecyclerViewList)
         observe(viewModel.error, ::displayError)
 
         observe(viewModel.provinceData, ::setMapData)
 
     }
 
-    private fun updateProvinceCasesRecyclerView(provinceCasesCases: List<ProvinceData>) {
+    private fun updateRecyclerViewList(provinceCasesCases: List<ProvinceData>) {
         provinceAdapter.updateProvinceCasesList(provinceCasesCases)
         progress.gone()
     }

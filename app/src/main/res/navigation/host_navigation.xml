@@ -19,6 +19,9 @@
             app:destination="@id/qandAFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_infographicFragment"
+            app:destination="@id/infographicFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -44,5 +47,14 @@
             app:exitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@id/dashboardFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/infographicFragment"
+        android:name="com.fahmisbas.covid19id.ui.infographics.InfographicFragment"
+        android:label="fragment_infographics"
+        tools:layout="@layout/fragment_infographics">
+        <action
+            android:id="@+id/actionInfographicFragmentToDashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>

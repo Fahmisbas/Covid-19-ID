@@ -21,4 +21,7 @@ interface Api {
     @GET("Fahmisbas/Covid-19-ID/master/indonesia_provinces_location.json")
     fun getProvinceLocation() : Call<ProvinceLocationResult>
 
+    @GET("Fahmisbas/COVID19-ID-Tracker/master/who_corona_infographics.json")
+    fun getInfographics(): Call<InfographicsResult>
+
 }

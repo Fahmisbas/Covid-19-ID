@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.data.MythBuster
+import com.fahmisbas.covid19id.util.getProgressDrawable
 import com.fahmisbas.covid19id.util.loadImage
 
 class MythBusterAdapter(private val mythBusterList: ArrayList<MythBuster>) : PagerAdapter() {
@@ -31,7 +32,7 @@ class MythBusterAdapter(private val mythBusterList: ArrayList<MythBuster>) : Pag
 
         val imgView = view.findViewById<ImageView>(R.id.imgMythBuster)
 
-        loadImage(imgView, mythBusterList[position].url)
+        imgView.loadImage(mythBusterList[position].url, getProgressDrawable(imgView.context))
 
         container.addView(view, 0)
 

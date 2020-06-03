@@ -19,6 +19,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_margin="@dimen/_10sdp"
                 app:cardBackgroundColor="@color/davy_grey"
+                android:id="@+id/backButtonBackground"
                 app:cardCornerRadius="@dimen/_20sdp">
 
                 <RelativeLayout
@@ -27,8 +28,8 @@
 
                     <Button
                         android:id="@+id/btnToDashboard"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:layout_centerInParent="true"
                         android:background="@drawable/ic_arrow_back" />
 
@@ -53,19 +54,18 @@
                     android:id="@+id/provinceSection"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/davy_grey"
+                    android:background="@color/colorPrimaryDark"
                     android:orientation="vertical">
 
 
-                    <ImageButton
+                    <Button
                         android:id="@+id/btnExpand"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:background="@color/davy_grey"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_expand_less" />
+                        android:background="@drawable/ic_expand_less"
+                        android:scaleType="fitCenter" />
 
 
                     <androidx.appcompat.widget.SearchView
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:visibility="gone"
-                        app:queryHint="Belom suntuk malam" />
+                        app:queryHint="DKI Jakarta" />
 
 
                     <FrameLayout
@@ -86,7 +86,8 @@
                             android:id="@+id/rvProvinces"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/davy_grey"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@color/colorPrimaryDark"
                             android:visibility="visible"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:listitem="@layout/item_province" />

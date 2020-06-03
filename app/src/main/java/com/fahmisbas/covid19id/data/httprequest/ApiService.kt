@@ -42,4 +42,8 @@ class ApiService  {
         return githubService.getProvinceLocation()
     }
 
+    fun getInfographics(): Call<InfographicsResult> {
+        return githubService.getInfographics()
+    }
+
 }

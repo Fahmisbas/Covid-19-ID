@@ -13,14 +13,15 @@ import com.fahmisbas.covid19id.databinding.ItemProvinceBinding
 class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceData>) :
     RecyclerView.Adapter<ProvinceAdapter.ViewHolder>() {
 
-
     private lateinit var provinceCasesListFull: ArrayList<ProvinceData>
-
 
     fun updateProvinceCasesList(newList: List<ProvinceData>) {
         provinceCasesListFull = ArrayList(newList)
         provinceCasesList.clear()
         provinceCasesList.addAll(newList)
+        provinceCasesList.sortByDescending {
+            it.positive.toInt()
+        }
         notifyDataSetChanged()
     }
 

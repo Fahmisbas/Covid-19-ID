@@ -44,14 +44,25 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
     override fun observeChanges() {
         observe(viewModel.indonesia, ::updateViews)
         observe(viewModel.error,::displayError)
+        observe(viewModel.error, ::updateViews)
     }
 
     private fun updateViews(indonesia: Indonesia) {
-        binding.indonesia = indonesia
-        refreshLayout.isRefreshing = false
+        indonesia.let { indonesiaData ->
+            binding.indonesia = indonesiaData
+            refreshLayout.isRefreshing = false
+            progress.gone()
+            showViews()
+        }
+    }
 
-        progress.gone()
-        showViews()
+    private fun updateViews(isError: Boolean) {
+        if (isError) {
+            refreshLayout.isRefreshing = false
+            progress.gone()
+            errorMessage.visible()
+            binding.errorMessage.text = "cannot proceed your request\ntry again later"
+        }
     }
 
     private fun showViews() {
@@ -71,6 +82,13 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
             val action = DashboardFragmentDirections.actionDashboardFragmentToQandAFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        infographicCardView.setOnClickListener {
+            val action = DashboardFragmentDirections.actionDashboardFragmentToInfographicFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
+
     }
 
     override fun getViewModel() = DashboardViewModel::class.java
