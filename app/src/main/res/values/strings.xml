@@ -4,4 +4,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
+    <string name="apptitle">Covid 19 ID</string>
+    <string name="positif">Positif</string>
+    <string name="total_kasus">Total Kasus</string>
+    <string name="sembuh">Sembuh</string>
+    <string name="meninggal">Meninggal</string>
+    <string name="total_case">Total Kasus</string>
+    <string name="map">Map</string>
+    <string name="pertanyaan_amp_jawaban_terkait_ncoronavirus"><![CDATA[Pertanyaan & jawaban terkait \nCoronavirus]]></string>
+    <string name="infographics">Infographics</string>
 </resources>

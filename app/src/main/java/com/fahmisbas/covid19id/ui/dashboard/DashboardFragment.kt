@@ -60,8 +60,6 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
         if (isError) {
             refreshLayout.isRefreshing = false
             progress.gone()
-            errorMessage.visible()
-            binding.errorMessage.text = "cannot proceed your request\ntry again later"
         }
     }
 

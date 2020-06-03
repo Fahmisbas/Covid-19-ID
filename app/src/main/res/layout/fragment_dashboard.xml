@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="indonesia"
             type="com.fahmisbas.covid19id.data.Indonesia" />
@@ -24,26 +25,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/toolbarTitle"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:adjustViewBounds="true"
-                    android:fontFamily="@font/googlesansbold"
                     android:layout_centerInParent="true"
-                    android:text="Covid 19 ID"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_18sdp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_toEndOf="@id/toolbarTitle"
-                    android:src="@drawable/ic_idnflag" />
+                    <TextView
+                        android:id="@+id/toolbarTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:adjustViewBounds="true"
+                        android:fontFamily="@font/googlesansbold"
+                        android:text="@string/app_name"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:src="@drawable/ic_idnflag" />
+                </LinearLayout>
+
 
             </RelativeLayout>
 
@@ -60,7 +66,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -70,292 +76,176 @@
                         android:orientation="vertical">
 
 
-                        <RelativeLayout
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardview"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            app:cardBackgroundColor="@color/davy_grey"
+                            app:cardCornerRadius="@dimen/_5sdp">
 
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/cardview"
+                            <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:cardBackgroundColor="@color/davy_grey"
-                                app:cardCornerRadius="@dimen/_5sdp">
+                                android:layout_height="match_parent">
 
-                                <FrameLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                <ProgressBar
+                                    android:id="@+id/progress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:visibility="visible" />
+                            </FrameLayout>
 
-                                    <ProgressBar
-                                        android:id="@+id/progress"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:visibility="visible" />
+                            <GridLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/_15sdp"
+                                android:columnCount="2"
+                                android:rowCount="2"
+                                android:useDefaultMargins="true">
+
+                                <LinearLayout
+                                    android:layout_rowWeight="1"
+                                    android:layout_columnWeight="1"
+                                    android:layout_gravity="fill"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/errorMessage"
-                                        android:layout_width="wrap_content"
+                                        android:id="@+id/titleTotalCase"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/googlesansbold"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/total_case"
                                         android:textColor="@android:color/white"
-                                        android:visibility="gone" />
+                                        android:textSize="@dimen/_14ssp" />
 
-                                    <GridLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:columnCount="2"
-                                        android:columnOrderPreserved="false"
-                                        android:rowCount="2">
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_rowWeight="1"
-                                            android:layout_columnWeight="1"
-                                            android:layout_margin="@dimen/_20sdp"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/titleTotalCase"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:fontFamily="@font/googlesansregular"
-                                                android:gravity="center_horizontal"
-                                                android:text="Total Kasus"
-                                                android:textColor="@android:color/white"
-                                                android:textSize="@dimen/_15ssp"
-                                                android:textStyle="bold" />
-
-                                            <TextView
-                                                android:id="@+id/tvTotalCases"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:fontFamily="@font/googlesansregular"
-                                                android:text="@{indonesia.caseNumber}"
-                                                android:textColor="@android:color/white"
-                                                android:textSize="@dimen/_18ssp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_rowWeight="1"
-                                            android:layout_columnWeight="1"
-                                            android:layout_margin="@dimen/_20sdp"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/titlePositive"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:fontFamily="@font/googlesansregular"
-                                                android:gravity="center_horizontal"
-                                                android:text="Positif"
-                                                android:textColor="@android:color/white"
-                                                android:textSize="@dimen/_15ssp"
-                                                android:textStyle="bold" />
-
-                                            <TextView
-                                                android:id="@+id/tvPositive"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:fontFamily="@font/googlesansregular"
-                                                android:text="@{indonesia.positive}"
-                                                android:textColor="@color/color_confirmed"
-                                                android:textSize="@dimen/_18ssp" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_rowWeight="1"
-                                            android:layout_columnWeight="1"
-                                            android:layout_margin="@dimen/_20sdp"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/titleRecovered"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:fontFamily="@font/googlesansregular"
-                                                android:gravity="center_horizontal"
-                                                android:text="Sembuh"
-                                                android:textColor="@android:color/white"
-                                                android:textSize="@dimen/_15ssp"
-                                                android:textStyle="bold" />
-
-                                            <TextView
-                                                android:id="@+id/tvRecovered"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:fontFamily="@font/googlesansregular"
-                                                android:text="@{indonesia.recovered}"
-                                                android:textColor="@color/color_recovered"
-                                                android:textSize="@dimen/_18ssp" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_rowWeight="1"
-                                            android:layout_columnWeight="1"
-                                            android:layout_margin="@dimen/_20sdp"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/titleDeath"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:fontFamily="@font/googlesansregular"
-                                                android:gravity="center_horizontal"
-                                                android:text="Meninggal"
-                                                android:textColor="@android:color/white"
-                                                android:textSize="@dimen/_15ssp"
-                                                android:textStyle="bold" />
-
-                                            <TextView
-                                                android:id="@+id/tvDeath"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_horizontal"
-                                                android:text="@{indonesia.death}"
-                                                android:textColor="@color/color_death"
-                                                android:textSize="@dimen/_18ssp" />
-                                        </LinearLayout>
-                                    </GridLayout>
-                                </FrameLayout>
-
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/mapCardView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/cardview"
-                                android:layout_marginTop="@dimen/_15sdp"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical"
-                                app:cardBackgroundColor="@color/davy_grey"
-                                app:cardCornerRadius="@dimen/_5sdp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="@dimen/_100sdp"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/img_indonesia" />
-
-                                    <RelativeLayout
+                                    <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_margin="@dimen/_10sdp"
-                                        android:background="@color/davy_grey">
+                                        android:fontFamily="@font/googlesansregular"
+                                        android:gravity="center_horizontal"
+                                        android:text="@{indonesia.caseNumber}"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="@dimen/_14sdp" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/googlesansregular"
-                                            android:text="Map"
-                                            android:textColor="@android:color/white"
-                                            android:textSize="@dimen/_13ssp" />
-
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/ic_arrow_forward" />
-
-                                    </RelativeLayout>
                                 </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/infographicCardView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/qandaCardView"
-                                android:layout_marginTop="@dimen/_15sdp"
-                                android:clickable="true"
-                                android:focusable="true"
-                                app:cardBackgroundColor="@color/davy_grey"
-                                app:cardCornerRadius="@dimen/_5sdp">
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_rowWeight="1"
+                                    android:layout_columnWeight="1"
+                                    android:layout_gravity="fill"
                                     android:orientation="vertical">
 
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="@dimen/_100sdp"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/infographic" />
-
-                                    <RelativeLayout
+                                    <TextView
+                                        android:id="@+id/titlePositive"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_margin="@dimen/_10sdp"
-                                        android:background="@color/davy_grey">
+                                        android:fontFamily="@font/googlesansbold"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/positif"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="@dimen/_14ssp" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/googlesansregular"
-                                            android:text="Infographics"
-                                            android:textColor="@android:color/white"
-                                            android:textSize="@dimen/_13ssp" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/googlesansregular"
+                                        android:gravity="center_horizontal"
+                                        android:text="@{indonesia.positive}"
+                                        android:textColor="@color/color_confirmed"
+                                        android:textSize="@dimen/_14ssp" />
 
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/ic_arrow_forward" />
-
-                                    </RelativeLayout>
                                 </LinearLayout>
-                            </androidx.cardview.widget.CardView>
 
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/qandaCardView"
+                                <LinearLayout
+                                    android:layout_rowWeight="1"
+                                    android:layout_columnWeight="1"
+                                    android:layout_gravity="fill"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/titleRecovered"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/googlesansbold"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/sembuh"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="@dimen/_14ssp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/googlesansregular"
+                                        android:gravity="center_horizontal"
+                                        android:text="@{indonesia.recovered}"
+                                        android:textColor="@color/color_recovered"
+                                        android:textSize="@dimen/_14ssp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_rowWeight="1"
+                                    android:layout_columnWeight="1"
+                                    android:layout_gravity="fill"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/titleDeath"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/googlesansbold"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/meninggal"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="@dimen/_14ssp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/googlesansregular"
+                                        android:gravity="center_horizontal"
+                                        android:text="@{indonesia.death}"
+                                        android:textColor="@color/color_death"
+                                        android:textSize="@dimen/_14ssp" />
+                                </LinearLayout>
+                            </GridLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mapCardView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="@color/davy_grey"
+                            app:cardCornerRadius="@dimen/_5sdp">
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@id/mapCardView"
-                                android:layout_marginTop="@dimen/_15sdp"
-                                android:clickable="true"
-                                android:focusable="true"
-                                app:cardBackgroundColor="@color/davy_grey"
-                                app:cardCornerRadius="@dimen/_5sdp">
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_100sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/img_indonesia" />
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/_10sdp">
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/_10sdp"
+                                    android:background="@color/davy_grey">
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_centerVertical="true"
                                         android:fontFamily="@font/googlesansregular"
-                                        android:text="Pertanyaan &amp; jawaban terkait \nCoronavirus"
+                                        android:text="@string/map"
                                         android:textColor="@android:color/white"
                                         android:textSize="@dimen/_13ssp" />
 
@@ -365,9 +255,89 @@
                                         android:layout_alignParentEnd="true"
                                         android:layout_centerVertical="true"
                                         android:src="@drawable/ic_arrow_forward" />
+
                                 </RelativeLayout>
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/qandaCardView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/davy_grey"
+                            app:cardCornerRadius="@dimen/_5sdp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/_10sdp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/googlesansregular"
+                                    android:text="@string/pertanyaan_amp_jawaban_terkait_ncoronavirus"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="@dimen/_13ssp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_arrow_forward" />
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/infographicCardView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/davy_grey"
+                            app:cardCornerRadius="@dimen/_5sdp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_100sdp"
+                                    android:scaleType="centerCrop" />
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/_10sdp"
+                                    android:background="@color/davy_grey">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/googlesansregular"
+                                        android:text="@string/infographics"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="@dimen/_13ssp" />
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_arrow_forward" />
+
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
