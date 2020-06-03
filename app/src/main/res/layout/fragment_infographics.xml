@@ -56,6 +56,7 @@
                 android:id="@+id/rvInfographics"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/_10sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_infographics" />
