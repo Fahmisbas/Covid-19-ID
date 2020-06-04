@@ -6,7 +6,7 @@
 
         <variable
             name="qAndA"
-            type="com.fahmisbas.covid19id.data.QandA" />
+            type="com.fahmisbas.covid19id.data.model.QandA" />
     </data>
 
     <androidx.cardview.widget.CardView

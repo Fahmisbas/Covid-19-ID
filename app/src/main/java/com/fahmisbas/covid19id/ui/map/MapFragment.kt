@@ -10,7 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.ProvinceData
+import com.fahmisbas.covid19id.data.model.ProvinceData
 import com.fahmisbas.covid19id.databinding.FragmentMapBinding
 import com.fahmisbas.covid19id.ui.adapter.ProvinceAdapter
 import com.fahmisbas.covid19id.ui.base.BaseFragment
@@ -28,7 +28,6 @@ import kotlinx.android.synthetic.main.fragment_map.*
 class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReadyCallback {
 
     private var isPressed = false;
-    val province = arrayListOf<ProvinceData>()
 
     private var provinceAdapter = ProvinceAdapter(arrayListOf())
     private var googleMap: GoogleMap? = null
@@ -80,7 +79,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     }
 
     private fun btnAction() {
-        btnToDashboard.setOnClickListener {
+        btnBack.setOnClickListener {
             val action = MapFragmentDirections.actionMapFragmentToDashboardFragment()
             Navigation.findNavController(it).navigate(action)
         }
@@ -90,14 +89,14 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
         btnExpand.setOnClickListener {
             isPressed = if (isPressed) {
                 map.gone()
-                btnToDashboard.gone()
+                btnBack.gone()
                 backButtonBackground.gone()
                 search.visible()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_more)
                 false
             } else {
                 map.visible()
-                btnToDashboard.visible()
+                btnBack.visible()
                 backButtonBackground.visible()
                 search.gone()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_less)

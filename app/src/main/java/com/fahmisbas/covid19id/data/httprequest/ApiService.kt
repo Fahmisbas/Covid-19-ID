@@ -1,6 +1,6 @@
 package com.fahmisbas.covid19id.data.httprequest
 
-import com.fahmisbas.covid19id.data.*
+import com.fahmisbas.covid19id.data.model.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,11 +22,11 @@ class ApiService  {
         .build()
         .create(Api::class.java)
 
-    fun getProvince() : Call<ProvinceResult> {
+    fun getProvince(): Call<ProvinceCasesData> {
         return mathdroidService.getProvince()
     }
 
-    fun getIndonesia() : Call<Indonesia> {
+    fun getIndonesia(): Call<IndonesiaData> {
         return mathdroidService.getIndonesia()
     }
 
@@ -38,11 +38,11 @@ class ApiService  {
         return githubService.getMythBuster()
     }
 
-    fun getProvinceLocation() : Call<ProvinceLocationResult> {
+    fun getProvinceLocation(): Call<ProvinceLocationData> {
         return githubService.getProvinceLocation()
     }
 
-    fun getInfographics(): Call<InfographicsResult> {
+    fun getInfographics(): Call<InfographicsData> {
         return githubService.getInfographics()
     }
 

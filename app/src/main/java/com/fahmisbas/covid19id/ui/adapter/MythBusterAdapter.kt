@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.MythBuster
+import com.fahmisbas.covid19id.data.model.MythBuster
 import com.fahmisbas.covid19id.util.getProgressDrawable
 import com.fahmisbas.covid19id.util.loadImage
 

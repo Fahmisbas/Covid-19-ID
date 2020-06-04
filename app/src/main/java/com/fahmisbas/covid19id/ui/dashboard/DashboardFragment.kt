@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.Indonesia
+import com.fahmisbas.covid19id.data.model.IndonesiaData
 import com.fahmisbas.covid19id.databinding.FragmentDashboardBinding
 import com.fahmisbas.covid19id.ui.base.BaseFragment
 import com.fahmisbas.covid19id.util.gone
@@ -23,6 +23,7 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
 
         refreshLayout()
         btnActions()
+
 
         viewModel.refresh()
     }
@@ -47,8 +48,8 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
         observe(viewModel.error, ::updateViews)
     }
 
-    private fun updateViews(indonesia: Indonesia) {
-        indonesia.let { indonesiaData ->
+    private fun updateViews(indonesiaData: IndonesiaData) {
+        indonesiaData.let { indonesiaData ->
             binding.indonesia = indonesiaData
             refreshLayout.isRefreshing = false
             progress.gone()
@@ -85,8 +86,6 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
             val action = DashboardFragmentDirections.actionDashboardFragmentToInfographicFragment()
             Navigation.findNavController(it).navigate(action)
         }
-
-
     }
 
     override fun getViewModel() = DashboardViewModel::class.java

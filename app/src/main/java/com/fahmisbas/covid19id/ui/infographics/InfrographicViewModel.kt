@@ -2,9 +2,9 @@ package com.fahmisbas.covid19id.ui.infographics
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.fahmisbas.covid19id.data.Infographics
-import com.fahmisbas.covid19id.data.InfographicsResult
 import com.fahmisbas.covid19id.data.httprequest.ApiService
+import com.fahmisbas.covid19id.data.model.Infographics
+import com.fahmisbas.covid19id.data.model.InfographicsData
 import com.fahmisbas.covid19id.ui.base.BaseViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,10 +22,10 @@ class InfrographicViewModel(application: Application) : BaseViewModel(applicatio
     }
 
     private fun fetchFromEndpoint() {
-        apiService.getInfographics().enqueue(object : Callback<InfographicsResult> {
+        apiService.getInfographics().enqueue(object : Callback<InfographicsData> {
             override fun onResponse(
-                call: Call<InfographicsResult>,
-                response: Response<InfographicsResult>
+                call: Call<InfographicsData>,
+                response: Response<InfographicsData>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.infographicList?.let { result ->
@@ -35,7 +35,7 @@ class InfrographicViewModel(application: Application) : BaseViewModel(applicatio
                 }
             }
 
-            override fun onFailure(call: Call<InfographicsResult>, t: Throwable) {
+            override fun onFailure(call: Call<InfographicsData>, t: Throwable) {
                 error.value = true
             }
         })

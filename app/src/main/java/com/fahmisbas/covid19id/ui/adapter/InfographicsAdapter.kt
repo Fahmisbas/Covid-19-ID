@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.Infographics
+import com.fahmisbas.covid19id.data.model.Infographics
 import com.fahmisbas.covid19id.databinding.ItemInfographicsBinding
 
 class InfographicsAdapter(private val infographicList: ArrayList<Infographics>) :

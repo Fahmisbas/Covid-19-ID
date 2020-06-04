@@ -17,11 +17,12 @@
         <action
             android:id="@+id/action_dashboardFragment_to_qandAFragment"
             app:destination="@id/qandAFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
+            app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_dashboardFragment_to_infographicFragment"
-            app:destination="@id/infographicFragment" />
+            app:destination="@id/infographicFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -55,6 +56,9 @@
         tools:layout="@layout/fragment_infographics">
         <action
             android:id="@+id/actionInfographicFragmentToDashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

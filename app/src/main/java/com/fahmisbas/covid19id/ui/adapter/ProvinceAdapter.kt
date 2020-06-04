@@ -6,7 +6,7 @@ import android.widget.Filter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fahmisbas.covid19id.R
-import com.fahmisbas.covid19id.data.ProvinceData
+import com.fahmisbas.covid19id.data.model.ProvinceData
 import com.fahmisbas.covid19id.databinding.ItemProvinceBinding
 
 

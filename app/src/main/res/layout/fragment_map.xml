@@ -27,7 +27,7 @@
                     android:layout_height="match_parent">
 
                     <Button
-                        android:id="@+id/btnToDashboard"
+                        android:id="@+id/btnBack"
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:layout_centerInParent="true"

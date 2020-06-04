@@ -5,7 +5,7 @@
 
         <variable
             name="infographics"
-            type="com.fahmisbas.covid19id.data.Infographics" />
+            type="com.fahmisbas.covid19id.data.model.Infographics" />
     </data>
 
     <LinearLayout

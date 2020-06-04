@@ -2,9 +2,9 @@ package com.fahmisbas.covid19id.ui.map
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.fahmisbas.covid19id.data.*
 import com.fahmisbas.covid19id.data.db.DatabaseCache
 import com.fahmisbas.covid19id.data.httprequest.ApiService
+import com.fahmisbas.covid19id.data.model.*
 import com.fahmisbas.covid19id.ui.base.BaseViewModel
 import com.fahmisbas.covid19id.util.SharedPreferenceHelper
 import kotlinx.coroutines.launch
@@ -58,10 +58,10 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun fetchProvinceCasesFromEndpoint() {
-        apiService.getProvince().enqueue(object : Callback<ProvinceResult> {
+        apiService.getProvince().enqueue(object : Callback<ProvinceCasesData> {
             override fun onResponse(
-                call: Call<ProvinceResult>,
-                response: Response<ProvinceResult>
+                call: Call<ProvinceCasesData>,
+                response: Response<ProvinceCasesData>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.provinceCasesList?.let { result ->
@@ -72,15 +72,19 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
                     }
                 }
             }
-            override fun onFailure(call: Call<ProvinceResult>, t: Throwable) {
+
+            override fun onFailure(call: Call<ProvinceCasesData>, t: Throwable) {
                 error.value = true
             }
         })
     }
 
     private fun fetchProvinceLocationFromEndpoint() {
-        apiService.getProvinceLocation().enqueue(object : Callback<ProvinceLocationResult> {
-            override fun onResponse(call: Call<ProvinceLocationResult>, response: Response<ProvinceLocationResult>) {
+        apiService.getProvinceLocation().enqueue(object : Callback<ProvinceLocationData> {
+            override fun onResponse(
+                call: Call<ProvinceLocationData>,
+                response: Response<ProvinceLocationData>
+            ) {
                 if (response.isSuccessful) {
                     response.body()?.locationList?.let { result ->
                         if (result.isNotEmpty()) {
@@ -90,16 +94,12 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
                     }
                 }
             }
-            override fun onFailure(call: Call<ProvinceLocationResult>, t: Throwable) {
+
+            override fun onFailure(call: Call<ProvinceLocationData>, t: Throwable) {
                 error.value = true
             }
         })
     }
-
-    /*
-    sort lists, and then combine both data
-    in addProvinceData() method
-     */
 
     private fun sortedCaseList(result: List<ProvinceCases>): ArrayList<ProvinceCases> {
         val sorted = arrayListOf<ProvinceCases>()

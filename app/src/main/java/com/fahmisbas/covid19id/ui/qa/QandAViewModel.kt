@@ -2,10 +2,10 @@ package com.fahmisbas.covid19id.ui.qa
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.fahmisbas.covid19id.data.MythBuster
-import com.fahmisbas.covid19id.data.QandA
 import com.fahmisbas.covid19id.data.db.DatabaseCache
 import com.fahmisbas.covid19id.data.httprequest.ApiService
+import com.fahmisbas.covid19id.data.model.MythBuster
+import com.fahmisbas.covid19id.data.model.QandA
 import com.fahmisbas.covid19id.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call

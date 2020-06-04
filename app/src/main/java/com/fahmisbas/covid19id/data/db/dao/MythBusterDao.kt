@@ -3,7 +3,7 @@ package com.fahmisbas.covid19id.data.db.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.fahmisbas.covid19id.data.MythBuster
+import com.fahmisbas.covid19id.data.model.MythBuster
 
 
 @Dao
