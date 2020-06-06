@@ -37,6 +37,13 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
 
         viewModel.fetch()
         initViews()
+        refreshBtn()
+    }
+
+    private fun refreshBtn() {
+        btnRefresh.setOnClickListener {
+            viewModel.refresh()
+        }
     }
 
     override fun onMapReady(p0: GoogleMap?) {
@@ -90,14 +97,14 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
             isPressed = if (isPressed) {
                 map.gone()
                 btnBack.gone()
-                backButtonBackground.gone()
+                btnRefresh.gone()
                 search.visible()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_more)
                 false
             } else {
                 map.visible()
                 btnBack.visible()
-                backButtonBackground.visible()
+                btnRefresh.visible()
                 search.gone()
                 btnExpand.setBackgroundResource(R.drawable.ic_expand_less)
                 true
@@ -106,14 +113,25 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     }
 
     override fun observeChanges() {
-        observe(viewModel.provinceData, ::updateRecyclerViewList)
+        observe(viewModel.provinceData, ::updateList)
         observe(viewModel.error, ::displayError)
 
         observe(viewModel.provinceData, ::setMapData)
+        observe(viewModel.loading, ::loading)
 
     }
 
-    private fun updateRecyclerViewList(provinceCasesCases: List<ProvinceData>) {
+    private fun loading(isLoading: Boolean) {
+        if (isLoading) {
+            progress.visible()
+            rvProvinces.gone()
+        } else {
+            progress.gone()
+            rvProvinces.visible()
+        }
+    }
+
+    private fun updateList(provinceCasesCases: List<ProvinceData>) {
         provinceAdapter.updateProvinceCasesList(provinceCasesCases)
         progress.gone()
     }

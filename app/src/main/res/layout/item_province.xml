@@ -10,12 +10,10 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        style="@style/ItemCardview"
         android:layout_height="@dimen/_100sdp"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="?selectableItemBackground"
-        app:cardCornerRadius="@dimen/_15sdp"
-        app:cardBackgroundColor="@color/davy_grey">
+        android:layout_margin="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -40,7 +38,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/googlesansbold"
                 android:text="@{`Positive : `  + province.positive}"
-                android:textColor="@color/color_confirmed"
+                android:textColor="@color/colorConfirmed"
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
@@ -50,7 +48,7 @@
                 android:layout_alignParentBottom="true"
                 android:fontFamily="@font/googlesansbold"
                 android:text="@{`Sembuh : ` + province.recovered}"
-                android:textColor="@color/color_recovered"
+                android:textColor="@color/colorRecovered"
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
@@ -62,7 +60,7 @@
                 android:layout_toEndOf="@id/recovered"
                 android:fontFamily="@font/googlesansbold"
                 android:text="@{`Meninggal : ` + province.death}"
-                android:textColor="@color/color_death"
+                android:textColor="@color/colorDeath"
                 android:textSize="@dimen/_13ssp" />
 
         </RelativeLayout>

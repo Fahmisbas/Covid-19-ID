@@ -4,19 +4,29 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.fahmisbas.covid19id.data.db.dao.InfographicsDao
 import com.fahmisbas.covid19id.data.db.dao.MythBusterDao
 import com.fahmisbas.covid19id.data.db.dao.ProvinceDataDao
 import com.fahmisbas.covid19id.data.db.dao.QandADao
+import com.fahmisbas.covid19id.data.model.Infographics
 import com.fahmisbas.covid19id.data.model.MythBuster
 import com.fahmisbas.covid19id.data.model.ProvinceData
 import com.fahmisbas.covid19id.data.model.QandA
 
-@Database(entities = arrayOf(QandA::class, MythBuster::class, ProvinceData::class), version = 1)
+@Database(
+    entities = arrayOf(
+        QandA::class,
+        MythBuster::class,
+        ProvinceData::class,
+        Infographics::class
+    ), version = 1
+)
 abstract class DatabaseCache : RoomDatabase(){
 
     abstract fun qandADao() : QandADao
     abstract fun mythBusterDao() : MythBusterDao
     abstract fun provinceDataDao(): ProvinceDataDao
+    abstract fun infographicsDao(): InfographicsDao
 
     companion object{
         @Volatile private var instance : DatabaseCache? = null

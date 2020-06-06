@@ -13,25 +13,44 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_margin="@dimen/_10sdp"
-                app:cardBackgroundColor="@color/davy_grey"
-                android:id="@+id/backButtonBackground"
+                android:id="@+id/btnBack"
+                style="@style/buttonMapBackground"
                 app:cardCornerRadius="@dimen/_20sdp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <Button
-                        android:id="@+id/btnBack"
+                    <ImageView
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/ic_arrow_back" />
+                        android:src="@drawable/ic_arrow_back" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:id="@+id/btnRefresh"
+                style="@style/buttonMapBackground"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_20sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_refresh" />
 
                 </RelativeLayout>
 
@@ -73,10 +92,10 @@
                         style="@style/SearchViewStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
                         android:layout_gravity="center_horizontal"
                         android:visibility="gone"
                         app:queryHint="DKI Jakarta" />
-
 
                     <FrameLayout
                         android:layout_width="match_parent"

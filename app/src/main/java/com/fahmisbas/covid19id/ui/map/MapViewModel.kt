@@ -19,6 +19,7 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
 
     val provinceData = MutableLiveData<List<ProvinceData>>()
     val error = MutableLiveData<Boolean>()
+    val loading = MutableLiveData<Boolean>()
 
     private var caseList = arrayListOf<ProvinceCases>()
     private var locationList = arrayListOf<ProvinceLocation>()
@@ -39,7 +40,13 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
+    fun refresh() {
+        fetchProvinceCasesFromEndpoint()
+        fetchProvinceLocationFromEndpoint()
+    }
+
     private fun fetchFromDatabase() {
+        loading.value = true
         launch {
             val provinceData =
                 DatabaseCache(getApplication()).provinceDataDao().getAllProvinceData()
@@ -58,6 +65,7 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun fetchProvinceCasesFromEndpoint() {
+        loading.value = true
         apiService.getProvince().enqueue(object : Callback<ProvinceCasesData> {
             override fun onResponse(
                 call: Call<ProvinceCasesData>,
@@ -80,6 +88,7 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun fetchProvinceLocationFromEndpoint() {
+        loading.value = true
         apiService.getProvinceLocation().enqueue(object : Callback<ProvinceLocationData> {
             override fun onResponse(
                 call: Call<ProvinceLocationData>,
@@ -163,5 +172,6 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
     private fun retrieved(list: List<ProvinceData>) {
         provinceData.value = list
         error.value = false
+        loading.value = false
     }
 }

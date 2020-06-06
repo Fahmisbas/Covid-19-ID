@@ -1,7 +1,11 @@
 package com.fahmisbas.covid19id.ui.dashboard
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.data.model.IndonesiaData
@@ -15,10 +19,14 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBinding>() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         hideViews()
 
         refreshLayout()
@@ -86,6 +94,15 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
             val action = DashboardFragmentDirections.actionDashboardFragmentToInfographicFragment()
             Navigation.findNavController(it).navigate(action)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_dashboard, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
     override fun getViewModel() = DashboardViewModel::class.java

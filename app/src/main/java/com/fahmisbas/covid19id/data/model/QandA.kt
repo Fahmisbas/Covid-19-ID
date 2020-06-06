@@ -15,3 +15,4 @@ data class MythBuster(val url: String?) {
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
 }
+

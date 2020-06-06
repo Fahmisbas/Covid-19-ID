@@ -11,7 +11,7 @@ import com.fahmisbas.covid19id.databinding.ItemQAndABinding
 class QandAdapter(private val qandAList: ArrayList<QandA>) :
     RecyclerView.Adapter<QandAdapter.ViewHolder>() {
 
-    fun updateProvinceList(newList: List<QandA>) {
+    fun updateQandAList(newList: List<QandA>) {
         qandAList.clear()
         qandAList.addAll(newList)
         notifyDataSetChanged()

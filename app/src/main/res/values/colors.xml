@@ -8,9 +8,8 @@
     <color name="davy_grey">#1B232F</color>
     <color name="blue">#00acee</color>
 
-    <color name="color_death">#F76353</color>
-    <color name="color_recovered">#00CC99</color>
-    <color name="color_active">#F2B900</color>
-    <color name="color_confirmed">#F2B900</color>
+    <color name="colorDeath">#ff6961</color>
+    <color name="colorRecovered">#2DEAD9</color>
+    <color name="colorConfirmed">#ffc04c</color>
 
 </resources>

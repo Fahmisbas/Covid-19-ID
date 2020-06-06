@@ -55,7 +55,7 @@ class QandAFragment : BaseFragment<QandAViewModel, FragmentQAndABinding>() {
     }
 
     private fun updateQandAData(list: List<QandA>) {
-        adapter.updateProvinceList(list)
+        adapter.updateQandAList(list)
     }
 
     override fun getViewModel() = QandAViewModel::class.java

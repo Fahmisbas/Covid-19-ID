@@ -8,6 +8,7 @@ import com.fahmisbas.covid19id.data.model.Infographics
 import com.fahmisbas.covid19id.databinding.FragmentInfographicsBinding
 import com.fahmisbas.covid19id.ui.adapter.InfographicsAdapter
 import com.fahmisbas.covid19id.ui.base.BaseFragment
+import com.fahmisbas.covid19id.util.gone
 import com.fahmisbas.covid19id.util.observe
 import kotlinx.android.synthetic.main.fragment_infographics.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -37,6 +38,7 @@ class InfographicFragment : BaseFragment<InfrographicViewModel, FragmentInfograp
     }
 
     private fun updateInfographicsList(list: List<Infographics>) {
+        loadingInfographics.gone()
         infographicsAdapter.updateInfographicList(list)
     }
 

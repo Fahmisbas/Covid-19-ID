@@ -60,5 +60,27 @@
             app:enterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/dashboardFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_infographicFragment_to_infographicDetailFragment"
+            app:destination="@id/infographicDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
+    </fragment>
+    <fragment
+        android:id="@+id/infographicDetailFragment"
+        android:name="com.fahmisbas.covid19id.ui.infographics.detailScreen.InfographicDetailFragment"
+        android:label="fragment_infographic_detail"
+        tools:layout="@layout/fragment_infographic_detail">
+        <action
+            android:id="@+id/action_infographicDetailFragment_to_infographicFragment"
+            app:destination="@id/infographicFragment"
+            app:popUpTo="@id/infographicFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="itemUrl"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="itemTitle"
+            android:defaultValue='""' />
     </fragment>
 </navigation>

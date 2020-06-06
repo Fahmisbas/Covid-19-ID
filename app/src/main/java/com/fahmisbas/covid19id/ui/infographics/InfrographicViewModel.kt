@@ -2,10 +2,12 @@ package com.fahmisbas.covid19id.ui.infographics
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.fahmisbas.covid19id.data.db.DatabaseCache
 import com.fahmisbas.covid19id.data.httprequest.ApiService
 import com.fahmisbas.covid19id.data.model.Infographics
 import com.fahmisbas.covid19id.data.model.InfographicsData
 import com.fahmisbas.covid19id.ui.base.BaseViewModel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +20,14 @@ class InfrographicViewModel(application: Application) : BaseViewModel(applicatio
 
 
     fun fetch() {
-        fetchFromEndpoint()
+        launch {
+            val infographics = DatabaseCache(getApplication()).infographicsDao().getAllnfographics()
+            if (infographics.isEmpty()) {
+                fetchFromEndpoint()
+            } else {
+                retrieved(infographics)
+            }
+        }
     }
 
     private fun fetchFromEndpoint() {
@@ -29,8 +38,7 @@ class InfrographicViewModel(application: Application) : BaseViewModel(applicatio
             ) {
                 if (response.isSuccessful) {
                     response.body()?.infographicList?.let { result ->
-                        infographics.value = result
-                        error.value = false
+                        storeInfographicsLocally(result)
                     }
                 }
             }
@@ -39,5 +47,24 @@ class InfrographicViewModel(application: Application) : BaseViewModel(applicatio
                 error.value = true
             }
         })
+    }
+
+    private fun storeInfographicsLocally(list: List<Infographics>) {
+        launch {
+            val dao = DatabaseCache(getApplication()).infographicsDao()
+            dao.deleteInfographcs()
+            val result = dao.instetInfographics(*list.toTypedArray())
+            var i = 0
+            while (i < result.size) {
+                list[i].uuid = result[i].toInt()
+                ++i
+            }
+            retrieved(list)
+        }
+    }
+
+    private fun retrieved(list: List<Infographics>) {
+        infographics.value = list
+        error.value = false
     }
 }
