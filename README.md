@@ -9,4 +9,3 @@
 - SDP, SSP
 - Glide
 - Palette
-- Kotlin Coroutines
