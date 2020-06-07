@@ -12,14 +12,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btnToDashboard"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_margin="@dimen/_15sdp"
-                android:background="@drawable/ic_arrow_back" />
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/btnBack"
+                style="@style/buttonMapBackground"
+                app:cardCornerRadius="@dimen/_20sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_back" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:id="@+id/btnRefresh"
+                style="@style/buttonMapBackground"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_20sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_refresh" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,18 +63,19 @@
                 android:layout_centerInParent="true"
                 android:orientation="vertical">
 
+
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/map"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_280sdp" />
 
-
                 <LinearLayout
                     android:id="@+id/provinceSection"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/davy_grey"
+                    android:background="@color/colorPrimaryDark"
                     android:orientation="vertical">
+
 
                     <Button
                         android:id="@+id/btnExpand"
@@ -46,28 +83,30 @@
                         android:layout_height="@dimen/_30sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:background="@drawable/ic_expand_less" />
+                        android:background="@drawable/ic_expand_less"
+                        android:scaleType="fitCenter" />
 
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/search"
-                        style="@style/Widget.AppCompat.Light.SearchView"
+                        style="@style/SearchViewStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp" />
+                        android:visibility="gone"
+                        app:queryHint="DKI Jakarta" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvProvinces"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/davy_grey"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@color/colorPrimaryDark"
                             android:visibility="visible"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:listitem="@layout/item_province" />

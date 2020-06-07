@@ -1,11 +1,16 @@
 package com.fahmisbas.covid19id.ui.dashboard
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
-import androidx.navigation.Navigation
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.fahmisbas.covid19id.R
+import com.fahmisbas.covid19id.data.model.IndonesiaData
 import com.fahmisbas.covid19id.databinding.FragmentDashboardBinding
-import com.fahmisbas.covid19id.model.Indonesia
 import com.fahmisbas.covid19id.ui.base.BaseFragment
 import com.fahmisbas.covid19id.util.gone
 import com.fahmisbas.covid19id.util.invisible
@@ -15,15 +20,19 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBinding>() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         hideViews()
-        refreshLayout()
-        btnActions()
 
-        viewModel.refresh()
+        refreshLayout()
+        viewModel.fetch()
     }
 
     private fun hideViews() {
@@ -36,39 +45,65 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
 
     private fun refreshLayout() {
         refreshLayout.setOnRefreshListener {
-            viewModel.refresh()
+            viewModel.fetch()
         }
     }
 
     override fun observeChanges() {
         observe(viewModel.indonesia, ::updateViews)
         observe(viewModel.error,::displayError)
+        observe(viewModel.error, ::updateViews)
     }
 
-    private fun updateViews(indonesia: Indonesia) {
-        binding.indonesia = indonesia
-        refreshLayout.isRefreshing = false
-        progress.gone()
-        showViews()
+    private fun updateViews(indonesiaData: IndonesiaData) {
+        indonesiaData.let { result ->
+            binding.indonesia = result
+            refreshLayout.isRefreshing = false
+            progress.gone()
+            initViews()
+        }
     }
 
-    private fun showViews() {
+    private fun updateViews(isError: Boolean) {
+        if (isError) {
+            refreshLayout.isRefreshing = false
+            progress.gone()
+            errorMessage.text = getString(R.string.errorMessage)
+        }
+    }
+
+    override fun initViews() {
         titleRecovered.visible()
         titlePositive.visible()
         titleDeath.visible()
         titleTotalCase.visible()
     }
 
-    private fun btnActions() {
+    override fun navigationButton() {
         mapCardView.setOnClickListener {
             val action = DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
-            Navigation.findNavController(it).navigate(action)
+            findNavController(it).navigate(action)
         }
 
         qandaCardView.setOnClickListener {
             val action = DashboardFragmentDirections.actionDashboardFragmentToQandAFragment()
-            Navigation.findNavController(it).navigate(action)
+            findNavController(it).navigate(action)
         }
+
+        infographicCardView.setOnClickListener {
+            val action = DashboardFragmentDirections.actionDashboardFragmentToInfographicFragment()
+            findNavController(it).navigate(action)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_dashboard, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return item.onNavDestinationSelected(findNavController(requireActivity(), R.id.fragment))
+                || super.onOptionsItemSelected(item)
     }
 
     override fun getViewModel() = DashboardViewModel::class.java

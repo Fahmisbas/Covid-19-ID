@@ -1,7 +1,22 @@
 <resources>
     <string name="app_name">Covid 19 ID</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_appname">Covid 19 ID</string>
+    <string name="positif">Positif</string>
+    <string name="total_kasus">Total Kasus</string>
+    <string name="sembuh">Sembuh</string>
+    <string name="meninggal">Meninggal</string>
+    <string name="total_case">Total Kasus</string>
+    <string name="map">Map</string>
+    <string name="pertanyaan_amp_jawaban_terkait_ncoronavirus"><![CDATA[Pertanyaan & jawaban terkait \nCoronavirus]]></string>
+    <string name="title_infographics">Infographics</string>
+    <string name="title_q_and_a_">Pertanyaan Umum</string>
+    <string name="title_detail_infographic">Detail</string>
+    <string name="title_about_fragment">About</string>
+    <string name="errorMessage">Something went wrong</string>
+    <string name="developer_info">Fahmi Sulaiman B\n\nhttps://github.com/Fahmisbas\nhttps://medium.com/@fahmisulaimanbas</string>
+    <string name="about_covid_data_copyright">MIT License 2020, mathdroid.\n\nhttps://indonesia-covid-19.mathdro.id/api</string>
+    <string name="about_information_copyright">WHO(World Health Organization)\n\nhttps://www.who.int/indonesia/news/novel-coronavirus</string>
 </resources>

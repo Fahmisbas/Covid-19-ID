@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.infographics.detailScreen.InfographicDetailFragment">
+
+    <data>
+
+        <variable
+            name="infographicUrl"
+            type="String" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="palette"
+            type="com.fahmisbas.covid19id.data.model.ColorPalette" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{palette.color}"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbarInfographicsDetail"
+            layout="@layout/toolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:indeterminate="true"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/imageView"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/_15sdp"
+                android:background="@color/davy_grey"
+                android:fontFamily="@font/googlesansbold"
+                android:gravity="center"
+                android:text="@{title}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_17sdp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="@dimen/_300sdp"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/_15sdp"
+                android:imageUrl="@{infographicUrl}"
+                android:scaleType="centerCrop" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/imageView"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/_20sdp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_send"
+                app:backgroundTint="@color/davy_grey" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,179 @@
+{
+  "lacation": [
+    {
+      "lat": -6.187082,
+      "lng": 106.844473,
+      "provinsi": "DKI Jakarta"
+    },
+    {
+      "lat": -7.6850479,
+      "lng": 111.7593912,
+      "provinsi": "Jawa Timur"
+    },
+    {
+      "lat": -6.8960665,
+      "lng": 107.4489156,
+      "provinsi": "Jawa Barat"
+    },
+    {
+      "lat": -3.6662356,
+      "lng": 119.9702343,
+      "provinsi": "Sulawesi Selatan"
+    },
+    {
+      "lat": -7.1505104,
+      "lng": 109.5868991,
+      "provinsi": "Jawa Tengah"
+    },
+    {
+      "lat": -3.4149891,
+      "lng": 103.7336015,
+      "provinsi": "Sumatera Selatan"
+    },
+    {
+      "lat": -3.1099087,
+      "lng": 115.2598629,
+      "provinsi": "Kalimantan Selatan"
+    },
+    {
+      "lat": -6.4695801,
+      "lng": 105.9880533,
+      "provinsi": "Banten"
+    },
+    {
+      "lat": -4.2654716,
+      "lng": 138.0733643,
+      "provinsi": "Papua"
+    },
+    {
+      "lat": -8.6540817,
+      "lng": 117.3572623,
+      "provinsi": "Nusa Tenggara Barat"
+    },
+    {
+      "lat": -0.7387066,
+      "lng": 100.7950193,
+      "provinsi": "Sumatera Barat"
+    },
+    {
+      "lat": -8.3373257,
+      "lng": 115.0892313,
+      "provinsi": "Bali"
+    },
+    {
+      "lat": -1.6842256,
+      "lng": 113.3764323,
+      "provinsi": "Kalimantan Tengah"
+    },
+    {
+      "lat": 2.1602914,
+      "lng": 99.5103623,
+      "provinsi": "Sumatera Utara"
+    },
+    {
+      "lat": 0.6290644,
+      "lng": 123.9675643,
+      "provinsi": "Sulawesi Utara"
+    },
+    {
+      "lat": 0.5368844,
+      "lng": 116.4157303,
+      "provinsi": "Kalimantan Timur"
+    },
+    {
+      "lat": -4.1455716,
+      "lng": 122.1723673,
+      "provinsi": "Sulawesi Tenggara"
+    },
+    {
+      "lat": -7.8383562,
+      "lng": 110.2481931,
+      "provinsi": "Daerah Istimewa Yogyakarta"
+    },
+    {
+      "lat": -3.2403666,
+      "lng": 130.1651423,
+      "provinsi": "Maluku"
+    },
+    {
+      "lat": 2.8513745,
+      "lng": 105.4588846,
+      "provinsi": "Kepulauan Riau"
+    },
+    {
+      "lat": -0.2815676,
+      "lng": 111.4556913,
+      "provinsi": "Kalimantan Barat"
+    },
+    {
+      "lat": -1.3363926,
+      "lng": 133.1490723,
+      "provinsi": "Papua Barat"
+    },
+    {
+      "lat": 3.0689394,
+      "lng": 116.0553403,
+      "provinsi": "Kalimantan Utara"
+    },
+    {
+      "lat": 1.5653304,
+      "lng": 127.8177033,
+      "provinsi": "Maluku Utara"
+    },
+    {
+      "lat": -4.5608446,
+      "lng": 105.4008513,
+      "provinsi": "Lampung"
+    },
+    {
+      "lat": -1.4851465,
+      "lng": 121.0473733,
+      "provinsi": "Sulawesi Tengah"
+    },
+    {
+      "lat": 0.3075984,
+      "lng": 101.6702753,
+      "provinsi": "Riau"
+    },
+    {
+      "lat": -1.6106946,
+      "lng": 103.6107633,
+      "provinsi": "Jambi"
+    },
+    {
+      "lat": 0.5467333,
+      "lng": 123.0412594,
+      "provinsi": "Gorontalo"
+    },
+    {
+      "lat": -8.6544617,
+      "lng": 121.1036203,
+      "provinsi": "Nusa Tenggara Timur"
+    },
+    {
+      "lat": -2.8266076,
+      "lng": 119.2623433,
+      "provinsi": "Sulawesi Barat"
+    },
+    {
+      "lat": -3.7930146,
+      "lng": 102.2585743,
+      "provinsi": "Bengkulu"
+    },
+    {
+      "lat": -2.7366636,
+      "lng": 106.4333673,
+      "provinsi": "Kepulauan Bangka Belitung"
+    },
+    {
+      "lat": 0,
+      "lng": 0,
+      "provinsi": "Indonesia"
+    },
+    {
+      "lat": 4.6898283,
+      "lng": 96.7450723,
+      "provinsi": "Aceh"
+    }
+  ]
+}
