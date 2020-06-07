@@ -1,10 +1,12 @@
 package com.fahmisbas.covid19id.ui.infographics.detailScreen
 
 import android.app.Application
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.Navigation
 import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -27,7 +29,7 @@ class InfographicDetailFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbarTitle.text = "Detail"
+        sendImage()
     }
     override fun getViewModel() = InfographicDetailViewModel::class.java
     override fun getFragmentView() = R.layout.fragment_infographic_detail
@@ -58,6 +60,30 @@ class InfographicDetailFragment :
             })
     }
 
-    class InfographicDetailViewModel(application: Application) : BaseViewModel(application) {}
+    override fun navigationButton() {
+        btnBack.setOnClickListener {
+            val action =
+                InfographicDetailFragmentDirections.actionInfographicDetailFragmentToInfographicFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+    }
+
+    private fun sendImage() {
+        send.setOnClickListener {
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, title)
+            shareIntent.putExtra(Intent.EXTRA_TEXT, url)
+            context?.startActivity(Intent.createChooser(shareIntent, "Share to"))
+        }
+    }
+
+    override fun initViews() {
+        toolbarTitle.text = getString(R.string.title_detail_infographic)
+    }
+
+    class InfographicDetailViewModel(application: Application) : BaseViewModel(application) {
+        override fun fetch() {}
+    }
 }
 

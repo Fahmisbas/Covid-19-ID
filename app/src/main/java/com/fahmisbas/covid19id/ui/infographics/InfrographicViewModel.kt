@@ -19,7 +19,7 @@ class InfrographicViewModel(application: Application) : BaseViewModel(applicatio
     val error = MutableLiveData<Boolean>()
 
 
-    fun fetch() {
+    override fun fetch() {
         launch {
             val infographics = DatabaseCache(getApplication()).infographicsDao().getAllnfographics()
             if (infographics.isEmpty()) {

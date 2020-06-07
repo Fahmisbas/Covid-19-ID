@@ -20,7 +20,7 @@ class QandAViewModel(application: Application) : BaseViewModel(application) {
     var mythBuster = MutableLiveData<List<MythBuster>>()
     var error = MutableLiveData<Boolean>()
 
-    fun fetch() {
+    override fun fetch() {
         launch {
             val qandACache = DatabaseCache(getApplication()).qandADao().getQandA()
             val mythBusterCache = DatabaseCache(getApplication()).mythBusterDao().getMythBuster()

@@ -21,13 +21,11 @@ class InfographicFragment : BaseFragment<InfrographicViewModel, FragmentInfograp
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
-        btnAction()
         viewModel.fetch()
     }
 
-    private fun initViews() {
-        toolbarTitle.text = getString(R.string.infographics)
+    override fun initViews() {
+        toolbarTitle.text = getString(R.string.title_infographics)
         rvInfographics.apply {
             adapter = infographicsAdapter
         }
@@ -42,14 +40,13 @@ class InfographicFragment : BaseFragment<InfrographicViewModel, FragmentInfograp
         infographicsAdapter.updateInfographicList(list)
     }
 
-    private fun btnAction() {
+    override fun navigationButton() {
         btnBack.setOnClickListener {
             val action =
                 InfographicFragmentDirections.actionInfographicFragmentToDashboardFragment()
             Navigation.findNavController(it).navigate(action)
         }
     }
-
 
     override fun getViewModel(): Class<InfrographicViewModel> = InfrographicViewModel::class.java
 

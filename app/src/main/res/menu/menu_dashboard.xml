@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_menu"
-        android:title="About"
+        android:id="@+id/action_dashboardFragment_to_aboutFragment"
+        android:menuCategory="secondary"
+        android:title="@string/title_about_fragment"
         app:showAsAction="never" />
 
 </menu>

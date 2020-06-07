@@ -6,7 +6,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.data.model.IndonesiaData
 import com.fahmisbas.covid19id.databinding.FragmentDashboardBinding
@@ -27,13 +28,11 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+
         hideViews()
 
         refreshLayout()
-        btnActions()
-
-
-        viewModel.refresh()
+        viewModel.fetch()
     }
 
     private fun hideViews() {
@@ -46,7 +45,7 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
 
     private fun refreshLayout() {
         refreshLayout.setOnRefreshListener {
-            viewModel.refresh()
+            viewModel.fetch()
         }
     }
 
@@ -57,11 +56,11 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
     }
 
     private fun updateViews(indonesiaData: IndonesiaData) {
-        indonesiaData.let { indonesiaData ->
-            binding.indonesia = indonesiaData
+        indonesiaData.let { result ->
+            binding.indonesia = result
             refreshLayout.isRefreshing = false
             progress.gone()
-            showViews()
+            initViews()
         }
     }
 
@@ -69,30 +68,31 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
         if (isError) {
             refreshLayout.isRefreshing = false
             progress.gone()
+            errorMessage.text = getString(R.string.errorMessage)
         }
     }
 
-    private fun showViews() {
+    override fun initViews() {
         titleRecovered.visible()
         titlePositive.visible()
         titleDeath.visible()
         titleTotalCase.visible()
     }
 
-    private fun btnActions() {
+    override fun navigationButton() {
         mapCardView.setOnClickListener {
             val action = DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
-            Navigation.findNavController(it).navigate(action)
+            findNavController(it).navigate(action)
         }
 
         qandaCardView.setOnClickListener {
             val action = DashboardFragmentDirections.actionDashboardFragmentToQandAFragment()
-            Navigation.findNavController(it).navigate(action)
+            findNavController(it).navigate(action)
         }
 
         infographicCardView.setOnClickListener {
             val action = DashboardFragmentDirections.actionDashboardFragmentToInfographicFragment()
-            Navigation.findNavController(it).navigate(action)
+            findNavController(it).navigate(action)
         }
     }
 
@@ -102,7 +102,8 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        return item.onNavDestinationSelected(findNavController(requireActivity(), R.id.fragment))
+                || super.onOptionsItemSelected(item)
     }
 
     override fun getViewModel() = DashboardViewModel::class.java

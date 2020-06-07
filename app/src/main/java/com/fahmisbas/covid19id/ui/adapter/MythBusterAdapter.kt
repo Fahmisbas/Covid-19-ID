@@ -31,11 +31,9 @@ class MythBusterAdapter(private val mythBusterList: ArrayList<MythBuster>) : Pag
         val view = inflater.inflate(R.layout.item_mythbuster, container, false)
 
         val imgView = view.findViewById<ImageView>(R.id.imgMythBuster)
-
         imgView.loadImage(mythBusterList[position].url, getProgressDrawable(imgView.context))
 
         container.addView(view, 0)
-
         return view
     }
 

@@ -29,7 +29,7 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
     private var prefHelper = SharedPreferenceHelper(getApplication())
     private var refreshTime = 5 * 60 * 1000 * 1000 * 1000L
 
-    fun fetch() {
+    override fun fetch() {
         checkCacheDuration()
         val updateTime = prefHelper.getUpdateTime()
         if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
@@ -132,7 +132,7 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
 
     /*
     after cases and location list is sorted, combining both data
-    into ProvinceData object
+    into ProvinceData ArrayList and store it locally as a cache
      */
 
     private fun addProvinceData() {

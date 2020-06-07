@@ -40,37 +40,46 @@ class InfographicsAdapter(private val infographicList: ArrayList<Infographics>) 
 
     override fun onBindViewHolder(holder: InfographicsAdapter.ViewHolder, position: Int) {
         holder.view.infographics = infographicList[position]
-        clickEvent(holder, position)
+        clickEvent(holder, position, infographicList[position])
     }
 
-    private fun clickEvent(holder: InfographicsAdapter.ViewHolder, position: Int) {
+    private fun clickEvent(
+        holder: InfographicsAdapter.ViewHolder,
+        position: Int,
+        infographics: Infographics
+    ) {
         holder.view.picOne.setOnClickListener {
-            val picUrl = infographicList[position].picOne
-            val title = infographicList[position].title
-            navigateWithData(it, picUrl, title)
+            navigateWithData(
+                it,
+                infographics.picOne,
+                infographics.title
+            )
         }
-
         holder.view.picTwo.setOnClickListener {
-            val picUrl = infographicList[position].picTwo
-            val title = infographicList[position].title
-            navigateWithData(it, picUrl, title)
+            navigateWithData(
+                it,
+                infographics.picTwo,
+                infographics.title
+            )
         }
-
         holder.view.picThree.setOnClickListener {
-            val picUrl = infographicList[position].picThree
-            val title = infographicList[position].title
-            navigateWithData(it, picUrl, title)
+            navigateWithData(
+                it,
+                infographics.picThree,
+                infographics.title
+            )
         }
-
         holder.view.picFour.setOnClickListener {
-            val picUrl = infographicList[position].picFour
-            val title = infographicList[position].title
-            navigateWithData(it, picUrl, title)
+            navigateWithData(
+                it,
+                infographics.picFour,
+                infographics.title
+            )
         }
     }
 
     private fun navigateWithData(it: View?, picUrl: String, title: String) {
-        if (it != null) {
+        it?.run {
             val action =
                 InfographicFragmentDirections.actionInfographicFragmentToInfographicDetailFragment()
             action.itemUrl = picUrl
@@ -78,7 +87,6 @@ class InfographicsAdapter(private val infographicList: ArrayList<Infographics>) 
             Navigation.findNavController(it).navigate(action)
         }
     }
-
 
     class ViewHolder(var view: ItemInfographicsBinding) : RecyclerView.ViewHolder(view.root) {}
 

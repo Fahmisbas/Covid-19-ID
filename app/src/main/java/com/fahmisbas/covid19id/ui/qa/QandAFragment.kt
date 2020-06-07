@@ -24,37 +24,34 @@ class QandAFragment : BaseFragment<QandAViewModel, FragmentQAndABinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetch()
-
-        initViews()
-        btnAction()
     }
 
-    private fun btnAction() {
+    override fun navigationButton() {
         btnBack.setOnClickListener {
             val action = QandAFragmentDirections.actionQandAFragmentToDashboardFragment()
             Navigation.findNavController(it).navigate(action)
         }
     }
 
-    private fun initViews() {
-        toolbarTitle.text = getString(R.string.q_and_a_title)
+    override fun initViews() {
+        toolbarTitle.text = getString(R.string.title_q_and_a_)
         rvQandA.adapter = adapter
         viewPagerMythBuster.adapter = vpAdapter
         pageIndicator.setupWithViewPager(viewPagerMythBuster, true)
     }
 
     override fun observeChanges() {
-        observe(viewModel.qandA, ::updateQandAData)
-        observe(viewModel.mythBuster, ::updateMythBusterData)
+        observe(viewModel.qandA, ::updateQandAList)
+        observe(viewModel.mythBuster, ::updateMythBusterList)
         observe(viewModel.error, ::displayError)
 
     }
 
-    private fun updateMythBusterData(list: List<MythBuster>) {
+    private fun updateMythBusterList(list: List<MythBuster>) {
         vpAdapter.updateMythBusterList(list)
     }
 
-    private fun updateQandAData(list: List<QandA>) {
+    private fun updateQandAList(list: List<QandA>) {
         adapter.updateQandAList(list)
     }
 

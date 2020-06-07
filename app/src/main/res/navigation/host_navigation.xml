@@ -23,6 +23,11 @@
             android:id="@+id/action_dashboardFragment_to_infographicFragment"
             app:destination="@id/infographicFragment"
             app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -73,6 +78,7 @@
         <action
             android:id="@+id/action_infographicDetailFragment_to_infographicFragment"
             app:destination="@id/infographicFragment"
+            app:enterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/infographicFragment"
             app:popUpToInclusive="true" />
         <argument
@@ -82,5 +88,18 @@
         <argument
             android:name="itemTitle"
             android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.fahmisbas.covid19id.ui.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about">
+        <action
+            android:id="@+id/action_aboutFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

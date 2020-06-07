@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.data.model.ProvinceData
 import com.fahmisbas.covid19id.databinding.ItemProvinceBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceData>) :
@@ -50,9 +52,12 @@ class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceData>) :
             if (constraint.isEmpty()) {
                 filteredList.addAll(provinceCasesListFull)
             } else {
-                val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
+                val filterPattern =
+                    constraint.toString().toLowerCase(Locale.getDefault()).trim { it <= ' ' }
                 for (item in provinceCasesListFull) {
-                    if (item.provinceName!!.toLowerCase().contains(filterPattern)) {
+                    if (item.provinceName.toLowerCase(Locale.getDefault())
+                            .contains(filterPattern)
+                    ) {
                         filteredList.add(item)
                     }
                 }

@@ -16,7 +16,7 @@ class DashboardViewModel(application: Application): BaseViewModel(application) {
     val indonesia = MutableLiveData<IndonesiaData>()
     val error = MutableLiveData<Boolean>()
 
-    fun refresh() {
+    override fun fetch() {
         fetchFromEndpoint()
     }
 
@@ -36,7 +36,7 @@ class DashboardViewModel(application: Application): BaseViewModel(application) {
         })
     }
 
-    private fun retrieved(body: IndonesiaData) {
+    fun retrieved(body: IndonesiaData) {
         indonesia.value = body
         error.value = false
     }

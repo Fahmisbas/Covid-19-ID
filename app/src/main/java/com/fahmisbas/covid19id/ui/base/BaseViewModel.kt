@@ -18,4 +18,6 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         super.onCleared()
         job.cancel()
     }
+
+    abstract fun fetch()
 }

@@ -21,15 +21,16 @@ import com.fahmisbas.covid19id.data.model.QandA
         Infographics::class
     ), version = 1
 )
-abstract class DatabaseCache : RoomDatabase(){
+abstract class DatabaseCache : RoomDatabase() {
 
-    abstract fun qandADao() : QandADao
-    abstract fun mythBusterDao() : MythBusterDao
+    abstract fun qandADao(): QandADao
+    abstract fun mythBusterDao(): MythBusterDao
     abstract fun provinceDataDao(): ProvinceDataDao
     abstract fun infographicsDao(): InfographicsDao
 
-    companion object{
-        @Volatile private var instance : DatabaseCache? = null
+    companion object {
+        @Volatile
+        private var instance: DatabaseCache? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -41,7 +42,7 @@ abstract class DatabaseCache : RoomDatabase(){
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             DatabaseCache::class.java
-        ,"cachedb"
+            , "cachedb"
         ).build()
     }
 }

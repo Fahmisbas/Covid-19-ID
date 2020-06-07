@@ -25,6 +25,8 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeChanges()
+        initViews()
+        navigationButton()
     }
 
     abstract fun getViewModel() : Class<VM>
@@ -32,6 +34,10 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding> : Fragment() {
     abstract fun getFragmentView() : Int
 
     abstract fun observeChanges()
+
+    abstract fun initViews()
+
+    abstract fun navigationButton()
 
     fun displayError(isError : Boolean) {
         if (isError) {

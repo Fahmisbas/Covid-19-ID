@@ -34,9 +34,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.fetch()
-        initViews()
         refreshBtn()
     }
 
@@ -58,7 +56,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
 
     }
 
-    private fun initViews() {
+    override fun initViews() {
         map?.onCreate(null)
         map?.onResume()
         map?.getMapAsync(this)
@@ -67,7 +65,6 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
             adapter = provinceAdapter
         }
 
-        btnAction()
         searchBar()
         btnExpand()
     }
@@ -85,7 +82,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
         })
     }
 
-    private fun btnAction() {
+    override fun navigationButton() {
         btnBack.setOnClickListener {
             val action = MapFragmentDirections.actionMapFragmentToDashboardFragment()
             Navigation.findNavController(it).navigate(action)
@@ -113,7 +110,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     }
 
     override fun observeChanges() {
-        observe(viewModel.provinceData, ::updateList)
+        observe(viewModel.provinceData, ::updateProvinceDataList)
         observe(viewModel.error, ::displayError)
 
         observe(viewModel.provinceData, ::setMapData)
@@ -131,7 +128,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
         }
     }
 
-    private fun updateList(provinceCasesCases: List<ProvinceData>) {
+    private fun updateProvinceDataList(provinceCasesCases: List<ProvinceData>) {
         provinceAdapter.updateProvinceCasesList(provinceCasesCases)
         progress.gone()
     }
