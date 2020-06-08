@@ -25,8 +25,7 @@ class QandAViewModel(application: Application) : BaseViewModel(application) {
             val qandACache = DatabaseCache(getApplication()).qandADao().getQandA()
             val mythBusterCache = DatabaseCache(getApplication()).mythBusterDao().getMythBuster()
             if (qandACache.isEmpty() || mythBusterCache.isEmpty()) {
-                fetchQandADataFromEndpoint()
-                fetchMythBusterFromEndpoint()
+                fetchFromEndpoint()
             } else {
                 qandARetrieved(qandACache)
                 mythBusterRetrieved(mythBusterCache)
@@ -34,7 +33,7 @@ class QandAViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun fetchMythBusterFromEndpoint() {
+    private fun fetchFromEndpoint() {
         apiService.getMythBuster().enqueue(object : Callback<List<MythBuster>> {
             override fun onResponse(call: Call<List<MythBuster>>, response: Response<List<MythBuster>>) {
                 storeMythBusterLocally(response.body())
@@ -43,9 +42,6 @@ class QandAViewModel(application: Application) : BaseViewModel(application) {
                 error.value = true
             }
         })
-    }
-
-    private fun fetchQandADataFromEndpoint() {
         apiService.getQandA().enqueue(object : Callback<List<QandA>> {
             override fun onResponse(call: Call<List<QandA>>, response: Response<List<QandA>>) {
                 storeQandALocally(response.body())

@@ -35,22 +35,20 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
         if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
             fetchFromDatabase()
         } else {
-            fetchProvinceCasesFromEndpoint()
-            fetchProvinceLocationFromEndpoint()
+            fetchFromEndpont()
         }
     }
 
     fun refresh() {
-        fetchProvinceCasesFromEndpoint()
-        fetchProvinceLocationFromEndpoint()
+        fetchFromEndpont()
     }
 
     private fun fetchFromDatabase() {
         loading.value = true
         launch {
-            val provinceData =
+            val provinceDataCache =
                 DatabaseCache(getApplication()).provinceDataDao().getAllProvinceData()
-            retrieved(provinceData)
+            retrieved(provinceDataCache)
         }
     }
 
@@ -64,7 +62,7 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun fetchProvinceCasesFromEndpoint() {
+    private fun fetchFromEndpont() {
         loading.value = true
         apiService.getProvince().enqueue(object : Callback<ProvinceCasesData> {
             override fun onResponse(
@@ -85,10 +83,6 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
                 error.value = true
             }
         })
-    }
-
-    private fun fetchProvinceLocationFromEndpoint() {
-        loading.value = true
         apiService.getProvinceLocation().enqueue(object : Callback<ProvinceLocationData> {
             override fun onResponse(
                 call: Call<ProvinceLocationData>,

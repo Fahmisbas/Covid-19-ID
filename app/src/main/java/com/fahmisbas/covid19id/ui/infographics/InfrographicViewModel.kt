@@ -21,11 +21,12 @@ class InfrographicViewModel(application: Application) : BaseViewModel(applicatio
 
     override fun fetch() {
         launch {
-            val infographics = DatabaseCache(getApplication()).infographicsDao().getAllnfographics()
-            if (infographics.isEmpty()) {
+            val infographicsCache =
+                DatabaseCache(getApplication()).infographicsDao().getAllnfographics()
+            if (infographicsCache.isEmpty()) {
                 fetchFromEndpoint()
             } else {
-                retrieved(infographics)
+                retrieved(infographicsCache)
             }
         }
     }
