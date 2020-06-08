@@ -43,39 +43,11 @@ class InfographicsAdapter(private val infographicList: ArrayList<Infographics>) 
         clickEvent(holder, position, infographicList[position])
     }
 
-    private fun clickEvent(
-        holder: InfographicsAdapter.ViewHolder,
-        position: Int,
-        infographics: Infographics
-    ) {
-        holder.view.picOne.setOnClickListener {
-            navigateWithData(
-                it,
-                infographics.picOne,
-                infographics.title
-            )
-        }
-        holder.view.picTwo.setOnClickListener {
-            navigateWithData(
-                it,
-                infographics.picTwo,
-                infographics.title
-            )
-        }
-        holder.view.picThree.setOnClickListener {
-            navigateWithData(
-                it,
-                infographics.picThree,
-                infographics.title
-            )
-        }
-        holder.view.picFour.setOnClickListener {
-            navigateWithData(
-                it,
-                infographics.picFour,
-                infographics.title
-            )
-        }
+    private fun clickEvent(holder: InfographicsAdapter.ViewHolder, position: Int, infographics: Infographics) {
+        holder.view.picOne.setOnClickListener { navigateWithData(it, infographics.picOne, infographics.title) }
+        holder.view.picTwo.setOnClickListener { navigateWithData(it, infographics.picTwo, infographics.title) }
+        holder.view.picThree.setOnClickListener { navigateWithData(it, infographics.picThree, infographics.title) }
+        holder.view.picFour.setOnClickListener { navigateWithData(it, infographics.picFour, infographics.title) }
     }
 
     private fun navigateWithData(it: View?, picUrl: String, title: String) {
