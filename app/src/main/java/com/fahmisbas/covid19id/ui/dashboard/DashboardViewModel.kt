@@ -29,7 +29,6 @@ class DashboardViewModel(application: Application): BaseViewModel(application) {
                     }
                 }
             }
-
             override fun onFailure(call: Call<IndonesiaData>, t: Throwable) {
                 error.value = true
             }

@@ -42,7 +42,6 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
         titleRecovered.invisible()
     }
 
-
     private fun refreshLayout() {
         refreshLayout.setOnRefreshListener {
             viewModel.fetch()

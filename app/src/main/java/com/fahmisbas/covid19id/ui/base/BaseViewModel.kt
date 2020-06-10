@@ -20,4 +20,5 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
     }
 
     abstract fun fetch()
+
 }

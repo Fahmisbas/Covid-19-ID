@@ -1,11 +1,11 @@
 package com.fahmisbas.covid19id.ui.infographics.detailScreen
 
-import android.app.Application
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
 import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
@@ -15,7 +15,6 @@ import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.data.model.ColorPalette
 import com.fahmisbas.covid19id.databinding.FragmentInfographicDetailBinding
 import com.fahmisbas.covid19id.ui.base.BaseFragment
-import com.fahmisbas.covid19id.ui.base.BaseViewModel
 import com.fahmisbas.covid19id.util.gone
 import kotlinx.android.synthetic.main.fragment_infographic_detail.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -31,6 +30,7 @@ class InfographicDetailFragment :
         super.onViewCreated(view, savedInstanceState)
         sendImage()
     }
+
     override fun getViewModel() = InfographicDetailViewModel::class.java
     override fun getFragmentView() = R.layout.fragment_infographic_detail
     override fun observeChanges() {
@@ -82,8 +82,6 @@ class InfographicDetailFragment :
         toolbarTitle.text = getString(R.string.title_detail_infographic)
     }
 
-    class InfographicDetailViewModel(application: Application) : BaseViewModel(application) {
-        override fun fetch() {}
-    }
+    class InfographicDetailViewModel : ViewModel() {}
 }
 

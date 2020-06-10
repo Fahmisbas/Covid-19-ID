@@ -38,21 +38,21 @@ class AboutFragment : Fragment() {
 
     private fun dataSource() {
         btnToDataSource.setOnClickListener {
-            val intentPagi = Intent(
+            val toDataSource = Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("https://indonesia-covid-19.mathdro.id/api")
             )
-            startActivity(intentPagi)
+            startActivity(toDataSource)
         }
     }
 
     private fun whoWebsite() {
         btnToWhoWeb.setOnClickListener {
-            val intentPagi = Intent(
+            val toWhoSite = Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("https://www.who.int/indonesia/news/novel-coronavirus")
             )
-            startActivity(intentPagi)
+            startActivity(toWhoSite)
         }
     }
 
