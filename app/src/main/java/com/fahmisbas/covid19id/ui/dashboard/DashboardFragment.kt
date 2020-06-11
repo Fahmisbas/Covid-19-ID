@@ -30,7 +30,6 @@ class DashboardFragment : BaseFragment<DashboardViewModel, FragmentDashboardBind
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         hideViews()
-
         refreshLayout()
         viewModel.fetch()
     }

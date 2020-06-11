@@ -7,6 +7,8 @@ import com.fahmisbas.covid19id.data.httprequest.ApiService
 import com.fahmisbas.covid19id.data.model.*
 import com.fahmisbas.covid19id.ui.base.BaseViewModel
 import com.fahmisbas.covid19id.util.SharedPreferenceHelper
+import com.fahmisbas.covid19id.util.sortedLocationsList
+import com.fahmisbas.covid19id.util.sortedProvinceCasesList
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,15 +18,15 @@ import java.util.*
 
 class MapViewModel(application: Application) : BaseViewModel(application) {
 
-
     val provinceData = MutableLiveData<List<ProvinceData>>()
     val error = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
     private var caseList = arrayListOf<ProvinceCases>()
-    private var locationList = arrayListOf<ProvinceLocation>()
+    private var locationList = arrayListOf<ProvinceLocations>()
 
     private val apiService = ApiService()
+
 
     private var prefHelper = SharedPreferenceHelper(getApplication())
     private var refreshTime = 5 * 60 * 1000 * 1000 * 1000L
@@ -65,14 +67,11 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
     private fun fetchFromEndpont() {
         loading.value = true
         apiService.getProvince().enqueue(object : Callback<ProvinceCasesData> {
-            override fun onResponse(
-                call: Call<ProvinceCasesData>,
-                response: Response<ProvinceCasesData>
-            ) {
+            override fun onResponse(call: Call<ProvinceCasesData>, response: Response<ProvinceCasesData>) {
                 if (response.isSuccessful) {
                     response.body()?.provinceCasesList?.let { result ->
                         if (result.isNotEmpty()) {
-                            caseList = sortedCaseList(result)
+                            caseList = sortedProvinceCasesList(result)
                             addProvinceData()
                         }
                     }
@@ -84,14 +83,11 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
             }
         })
         apiService.getProvinceLocation().enqueue(object : Callback<ProvinceLocationData> {
-            override fun onResponse(
-                call: Call<ProvinceLocationData>,
-                response: Response<ProvinceLocationData>
-            ) {
+            override fun onResponse(call: Call<ProvinceLocationData>, response: Response<ProvinceLocationData>) {
                 if (response.isSuccessful) {
-                    response.body()?.locationList?.let { result ->
+                    response.body()?.locationsList?.let { result ->
                         if (result.isNotEmpty()) {
-                            locationList = sortedLocationList(result)
+                            locationList = sortedLocationsList(result)
                             addProvinceData()
                         }
                     }
@@ -102,26 +98,6 @@ class MapViewModel(application: Application) : BaseViewModel(application) {
                 error.value = true
             }
         })
-    }
-
-    private fun sortedCaseList(result: List<ProvinceCases>): ArrayList<ProvinceCases> {
-        val sorted = arrayListOf<ProvinceCases>()
-        if (result.isNotEmpty()) {
-            sorted.clear()
-            sorted.addAll(result)
-            sorted.sort()
-        }
-        return sorted
-    }
-
-    private fun sortedLocationList(result: List<ProvinceLocation>): ArrayList<ProvinceLocation> {
-        val sorted = arrayListOf<ProvinceLocation>()
-        if (result.isNotEmpty()) {
-            sorted.clear()
-            sorted.addAll(result)
-            sorted.sort()
-        }
-        return sorted
     }
 
     /*

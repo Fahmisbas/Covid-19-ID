@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="province"
             type="com.fahmisbas.covid19id.data.model.ProvinceData" />
@@ -37,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/googlesansbold"
-                android:text="@{`Positive : `  + province.positive}"
+                android:text="@{`Positif : `  + province.positive}"
                 android:textColor="@color/colorConfirmed"
                 android:textSize="@dimen/_13ssp" />
 
@@ -64,8 +63,6 @@
                 android:textSize="@dimen/_13ssp" />
 
         </RelativeLayout>
-
-
     </androidx.cardview.widget.CardView>
 </layout>
 

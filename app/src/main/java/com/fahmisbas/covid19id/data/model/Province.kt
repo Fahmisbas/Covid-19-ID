@@ -53,17 +53,17 @@ data class ProvinceCases(
 data class ProvinceLocationData(
 
     @SerializedName("lacation")
-    val locationList: List<ProvinceLocation>
+    val locationsList: List<ProvinceLocations>
 
 )
 
-data class ProvinceLocation(
+data class ProvinceLocations(
     val lat: String,
     val lng: String,
     @SerializedName("provinsi")
     val provinceName: String
-) : Comparable<ProvinceLocation> {
-    override fun compareTo(other: ProvinceLocation): Int {
+) : Comparable<ProvinceLocations> {
+    override fun compareTo(other: ProvinceLocations): Int {
         var compare = provinceName.compareTo(other.provinceName)
         if (compare == 0) {
             compare = Integer.compare(lat.toInt(), other.lat.toInt())
