@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class QandAFragment : BaseFragment<QandAViewModel, FragmentQAndABinding>() {
 
-    private var adapter = QandAdapter(arrayListOf())
+    private var adapter = QandAdapter()
     private var vpAdapter = MythBusterAdapter(arrayListOf())
 
 
@@ -52,7 +52,7 @@ class QandAFragment : BaseFragment<QandAViewModel, FragmentQAndABinding>() {
     }
 
     private fun updateQandAList(list: List<QandA>) {
-        adapter.updateQandAList(list)
+        adapter.updateItems(list)
     }
 
     override fun getViewModel() = QandAViewModel::class.java

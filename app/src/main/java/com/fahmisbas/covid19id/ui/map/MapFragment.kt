@@ -28,7 +28,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
 
     private var isPressed = false;
 
-    private var provinceAdapter = ProvinceAdapter(arrayListOf())
+    private var provinceAdapter = ProvinceAdapter()
     private var googleMap: GoogleMap? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,6 +74,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 provinceAdapter.getFiler().filter(newText)
                 return false
@@ -128,7 +129,8 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     }
 
     private fun updateProvinceDataList(provinceCasesCases: List<ProvinceData>) {
-        provinceAdapter.updateProvinceCasesList(provinceCasesCases)
+        provinceAdapter.updateItems(provinceCasesCases)
+        provinceAdapter.sortDescendingOrder()
         progress.gone()
     }
 

@@ -1,45 +1,22 @@
 package com.fahmisbas.covid19id.ui.adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.Filter
-import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.data.model.ProvinceData
 import com.fahmisbas.covid19id.databinding.ItemProvinceBinding
+import com.fahmisbas.covid19id.ui.base.BaseRecyclerViewAdapter
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceData>) :
-    RecyclerView.Adapter<ProvinceAdapter.ViewHolder>() {
+class ProvinceAdapter : BaseRecyclerViewAdapter<ProvinceData,ItemProvinceBinding>() {
 
-    private lateinit var provinceCasesListFull: ArrayList<ProvinceData>
+    private var provinceCasesListFull: ArrayList<ProvinceData> =  ArrayList(masterList)
 
-    fun updateProvinceCasesList(newList: List<ProvinceData>) {
-        provinceCasesListFull = ArrayList(newList)
-        provinceCasesList.clear()
-        provinceCasesList.addAll(newList)
-        provinceCasesList.sortByDescending {
+    fun sortDescendingOrder(){
+        masterList.sortByDescending {
             it.positive.toInt()
         }
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = DataBindingUtil.inflate<ItemProvinceBinding>(
-            inflater,
-            R.layout.item_province,
-            parent,
-            false
-        )
-        return ViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return provinceCasesList.size
     }
 
     fun getFiler(): Filter {
@@ -68,16 +45,18 @@ class ProvinceAdapter(private val provinceCasesList: ArrayList<ProvinceData>) :
         }
 
         override fun publishResults(constraint: CharSequence, results: FilterResults) {
-            provinceCasesList.clear()
-            provinceCasesList.addAll(results.values as Collection<ProvinceData>)
+            masterList.clear()
+            masterList.addAll(results.values as Collection<ProvinceData>)
             notifyDataSetChanged()
         }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.province = provinceCasesList[position]
+    override fun getLayout() = R.layout.item_province
+
+    override fun onBindViewHolder(
+        holder: Companion.BaseViewHolder<ItemProvinceBinding>,
+        position: Int
+    ) {
+        holder.binding.province = masterList[position]
     }
-
-    class ViewHolder(var view: ItemProvinceBinding) : RecyclerView.ViewHolder(view.root) {}
-
 }

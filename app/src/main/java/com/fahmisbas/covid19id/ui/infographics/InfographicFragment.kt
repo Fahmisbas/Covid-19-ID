@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 class InfographicFragment : BaseFragment<InfrographicViewModel, FragmentInfographicsBinding>() {
 
 
-    private val infographicsAdapter = InfographicsAdapter(arrayListOf())
+    private val infographicsAdapter = InfographicsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +37,7 @@ class InfographicFragment : BaseFragment<InfrographicViewModel, FragmentInfograp
 
     private fun updateInfographicsList(list: List<Infographics>) {
         loadingInfographics.gone()
-        infographicsAdapter.updateInfographicList(list)
+        infographicsAdapter.updateItems(list)
     }
 
     override fun navigationButton() {

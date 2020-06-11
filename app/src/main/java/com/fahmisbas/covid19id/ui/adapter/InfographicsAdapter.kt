@@ -1,53 +1,25 @@
 package com.fahmisbas.covid19id.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
 import com.fahmisbas.covid19id.R
 import com.fahmisbas.covid19id.data.model.Infographics
 import com.fahmisbas.covid19id.databinding.ItemInfographicsBinding
+import com.fahmisbas.covid19id.ui.base.BaseRecyclerViewAdapter
 import com.fahmisbas.covid19id.ui.infographics.InfographicFragmentDirections
 
-class InfographicsAdapter(private val infographicList: ArrayList<Infographics>) :
-    RecyclerView.Adapter<InfographicsAdapter.ViewHolder>() {
+class InfographicsAdapter : BaseRecyclerViewAdapter<Infographics,ItemInfographicsBinding>(){
 
-    fun updateInfographicList(newList: List<Infographics>) {
-        infographicList.clear()
-        infographicList.addAll(newList)
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: Companion.BaseViewHolder<ItemInfographicsBinding>, position: Int) {
+        holder.binding.infographics = masterList[position]
+        clickEvent(holder,position,masterList[position])
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): InfographicsAdapter.ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = DataBindingUtil.inflate<ItemInfographicsBinding>(
-            inflater,
-            R.layout.item_infographics,
-            parent,
-            false
-        )
-        return ViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return infographicList.size
-    }
-
-    override fun onBindViewHolder(holder: InfographicsAdapter.ViewHolder, position: Int) {
-        holder.view.infographics = infographicList[position]
-        clickEvent(holder, position, infographicList[position])
-    }
-
-    private fun clickEvent(holder: InfographicsAdapter.ViewHolder, position: Int, infographics: Infographics) {
-        holder.view.picOne.setOnClickListener { navigateWithData(it, infographics.picOne, infographics.title) }
-        holder.view.picTwo.setOnClickListener { navigateWithData(it, infographics.picTwo, infographics.title) }
-        holder.view.picThree.setOnClickListener { navigateWithData(it, infographics.picThree, infographics.title) }
-        holder.view.picFour.setOnClickListener { navigateWithData(it, infographics.picFour, infographics.title) }
+    private fun clickEvent(holder: BaseRecyclerViewAdapter.Companion.BaseViewHolder<ItemInfographicsBinding>, position: Int, infographics: Infographics) {
+        holder.binding.picOne.setOnClickListener { navigateWithData(it, infographics.picOne, infographics.title) }
+        holder.binding.picTwo.setOnClickListener { navigateWithData(it, infographics.picTwo, infographics.title) }
+        holder.binding.picThree.setOnClickListener { navigateWithData(it, infographics.picThree, infographics.title) }
+        holder.binding.picFour.setOnClickListener { navigateWithData(it, infographics.picFour, infographics.title) }
     }
 
     private fun navigateWithData(it: View?, picUrl: String, title: String) {
@@ -60,7 +32,7 @@ class InfographicsAdapter(private val infographicList: ArrayList<Infographics>) 
         }
     }
 
-    class ViewHolder(var view: ItemInfographicsBinding) : RecyclerView.ViewHolder(view.root) {}
+    override fun getLayout() = R.layout.item_infographics
 
 }
 
