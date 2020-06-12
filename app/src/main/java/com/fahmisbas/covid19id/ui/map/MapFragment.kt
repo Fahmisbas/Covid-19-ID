@@ -110,7 +110,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
     }
 
     override fun observeChanges() {
-        observe(viewModel.provinceData, ::updateProvinceDataList)
+        observe(viewModel.provinceData, ::updateListItems)
         observe(viewModel.error, ::displayError)
 
         observe(viewModel.provinceData, ::setMapData)
@@ -128,7 +128,7 @@ class MapFragment : BaseFragment<MapViewModel, FragmentMapBinding>(), OnMapReady
         }
     }
 
-    private fun updateProvinceDataList(provinceCasesCases: List<ProvinceData>) {
+    private fun updateListItems(provinceCasesCases: List<ProvinceData>) {
         provinceAdapter.updateItems(provinceCasesCases)
         provinceAdapter.sortDescendingOrder()
         progress.gone()

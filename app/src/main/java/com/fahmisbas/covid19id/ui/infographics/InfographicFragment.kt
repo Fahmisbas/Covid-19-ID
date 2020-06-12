@@ -32,10 +32,10 @@ class InfographicFragment : BaseFragment<InfrographicViewModel, FragmentInfograp
     }
 
     override fun observeChanges() {
-        observe(viewModel.infographics, ::updateInfographicsList)
+        observe(viewModel.infographics, ::updateListItems)
     }
 
-    private fun updateInfographicsList(list: List<Infographics>) {
+    private fun updateListItems(list: List<Infographics>) {
         loadingInfographics.gone()
         infographicsAdapter.updateItems(list)
     }

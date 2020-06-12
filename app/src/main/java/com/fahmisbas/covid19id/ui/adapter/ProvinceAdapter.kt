@@ -11,12 +11,14 @@ import kotlin.collections.ArrayList
 
 class ProvinceAdapter : BaseRecyclerViewAdapter<ProvinceData,ItemProvinceBinding>() {
 
-    private var provinceCasesListFull: ArrayList<ProvinceData> =  ArrayList(masterList)
+    private lateinit var provinceCasesListFull: ArrayList<ProvinceData>
 
     fun sortDescendingOrder(){
+        provinceCasesListFull = ArrayList(masterList)
         masterList.sortByDescending {
             it.positive.toInt()
         }
+        notifyDataSetChanged()
     }
 
     fun getFiler(): Filter {
@@ -47,6 +49,9 @@ class ProvinceAdapter : BaseRecyclerViewAdapter<ProvinceData,ItemProvinceBinding
         override fun publishResults(constraint: CharSequence, results: FilterResults) {
             masterList.clear()
             masterList.addAll(results.values as Collection<ProvinceData>)
+            masterList.sortByDescending {
+                it.positive.toInt()
+            }
             notifyDataSetChanged()
         }
     }
